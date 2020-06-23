@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DoAnFW.Controllers
 {
-    public class ListController1 : Controller
+    public class ProductController : Controller
     {
         public IActionResult Index()
         {
