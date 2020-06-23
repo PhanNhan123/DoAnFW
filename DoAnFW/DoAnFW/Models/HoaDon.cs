@@ -15,7 +15,7 @@ namespace DoAnFW.Models
         private string trangThai;
 
         public HoaDon() { }
-        public HoaDon(int mahd, int manl, int makh,DateTime ngaylap,double tonggia,,string tt)
+        public HoaDon(int mahd, int manl, int makh,DateTime ngaylap,double tonggia,string tt)
         {
             maHD = mahd;
             maNL = manl;

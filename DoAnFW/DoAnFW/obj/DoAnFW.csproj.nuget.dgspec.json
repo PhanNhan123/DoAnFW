@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/phannhan/Documents/framework/DoAnFW/DoAnFW/DoAnFW/DoAnFW.csproj": {}
+    "C:\\Users\\Vantich\\Documents\\GitHub\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj": {}
   },
   "projects": {
-    "/Users/phannhan/Documents/framework/DoAnFW/DoAnFW/DoAnFW/DoAnFW.csproj": {
+    "C:\\Users\\Vantich\\Documents\\GitHub\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/phannhan/Documents/framework/DoAnFW/DoAnFW/DoAnFW/DoAnFW.csproj",
+        "projectUniqueName": "C:\\Users\\Vantich\\Documents\\GitHub\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj",
         "projectName": "DoAnFW",
-        "projectPath": "/Users/phannhan/Documents/framework/DoAnFW/DoAnFW/DoAnFW/DoAnFW.csproj",
-        "packagesPath": "/Users/phannhan/.nuget/packages/",
-        "outputPath": "/Users/phannhan/Documents/framework/DoAnFW/DoAnFW/DoAnFW/obj/",
+        "projectPath": "C:\\Users\\Vantich\\Documents\\GitHub\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj",
+        "packagesPath": "C:\\Users\\Vantich\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Vantich\\Documents\\GitHub\\DoAnFW\\DoAnFW\\DoAnFW\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/phannhan/.config/NuGet/NuGet.Config"
+          "C:\\Users\\Vantich\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -35,6 +37,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.20, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -45,6 +53,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.2, 3.1.2]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -53,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

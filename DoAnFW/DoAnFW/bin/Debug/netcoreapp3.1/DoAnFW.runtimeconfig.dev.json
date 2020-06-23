@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Vantich\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Vantich\\.nuget\\packages"
+    ]
+  }
+}
