@@ -1,0 +1,173 @@
+﻿body {
+font-family: Arial;
+margin: 0;
+}
+
+* {
+box-sizing: border-box;
+color: black;
+}
+
+
+img {
+vertical-align: middle;
+}
+
+.main {
+width: 90%;
+height: 200%;
+margin: auto;
+}
+
+.namephone {
+width: 100%;
+height: 5%;
+}
+
+
+.rowdetail {
+display: flex;
+padding: 10px;
+margin: auto;
+width: 100%;
+height: 50%;
+}
+
+.namephone h1 {
+margin-top: 5%;
+margin-left: 0%;
+font-weight: bold;
+}
+
+.rowdetail .img-phone {
+position: relative;
+z-index: 0.01px;
+width: 30%;
+height: 50%;
+text-align: center;
+}
+
+.rowdetail .price {
+width: 30%;
+height: 100%;
+}
+
+.rowdetail .parameter {
+width: 30%;
+height: 100%;
+}
+
+.rowdetail .img-phone img {
+margin-top: 5%;
+width: 95%;
+height: 95%;
+}
+
+.rowdetail .price .cost {
+width: 100%;
+height: 15%;
+}
+
+.rowdetail .price .promotion {
+border: 1px solid #ddd;
+;
+margin-top: 5%;
+width: 90%;
+height: 55%;
+padding: 0.5rem 1rem;
+}
+
+.rowdetail .price .infcolor {
+display: flex;
+margin-top: 5%;
+color: #333;
+width: 100%;
+height: 10%;
+}
+
+.rowdetail .price .order {
+width: 100%;
+height: 50%;
+}
+
+.rowdetail .price .cost .cost-1 {
+color: red;
+}
+
+.rowdetail .price .cost .cost-1 b {
+font-size: 100%;
+}
+
+.rowdetail .price .cost .pg {
+display: flex;
+}
+
+.rowdetail .price .cost .pg .cs {
+width: 40%;
+}
+
+.rowdetail .price .cost .pg .cs .cost-2 {
+text-decoration: line-through;
+margin-left: 5%;
+font-size: 120%;
+width: 100%;
+}
+
+.rowdetail .price .giamgia b {
+background-color: red;
+margin-left: 10px;
+color: white;
+font-size: 100%;
+border-radius: 10px 10px;
+width: 100%;
+}
+
+.rowdetail .price a {
+text-decoration: none;
+color: black;
+}
+
+.rowdetail .price .button {
+display: flex;
+}
+
+.rowdetail .price .button a {
+margin: auto;
+height: 43px;
+width: 47%;
+border: 1px solid #2654e9;
+color: #2654e9;
+border-radius: 4px;
+background-color: white;
+text-align: center;
+padding: 5px;
+right: 0;
+left: 0;
+}
+
+.rowdetail .price .button a:hover {
+background-color: red;
+color: white;
+}
+
+.rowdetail .description b {
+font-size: 18px;
+}
+
+.rowdetail .table {
+margin-left: 10%;
+height: 425px;
+}
+
+.rowdetail table tr, td {
+color: #3c3d41;
+border-bottom: solid 1px #eee;
+padding: 5px;
+}
+
+.rowdetail table tr {
+color: #3c3d41;
+border-bottom: solid 1px #eee;
+padding: 5px;
+display: table-row;
+}
