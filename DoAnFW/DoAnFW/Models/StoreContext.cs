@@ -161,9 +161,313 @@ namespace DoAnFW.Models
             }
         }
         // Hoa Don
+        public List<HoaDon> GetHoaDons()
+        {
+            List<HoaDon> list = new List<HoaDon>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from hoadon";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new HoaDon()
+                        {
+                            MaHD = int.Parse(reader["MaHD"].ToString()),
+                            MaNL = int.Parse(reader["MaNL"].ToString()),
+                            MaKH = int.Parse(reader["MaKH"].ToString()),
+                            NgayLap = Convert.ToDateTime(reader["NgayLap"].ToString()),
+                            TongGia = float.Parse(reader["TongGia"].ToString()),
+                            TrangThai = reader["TrangThai"].ToString()
+                        });
+                    }
+                    reader.Close();
+                }
+
+                conn.Close();
+
+            }
+            return list;
+        }
+        public int InsertHoaDon(HoaDon hd)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "insert into hoadon values(@mahd,@manl,@makh, @ngay,@Tong,@trangthai)";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("mahd", hd.MaHD);
+                cmd.Parameters.AddWithValue("manl", hd.MaNL);
+                cmd.Parameters.AddWithValue("makh", hd.MaKH);
+                cmd.Parameters.AddWithValue("ngay", hd.NgayLap);
+                cmd.Parameters.AddWithValue("Tong", hd.TongGia);
+                cmd.Parameters.AddWithValue("trangthai",hd.TrangThai);
+                return (cmd.ExecuteNonQuery());
+
+            }
+        }
+        public int UpdateHoaDon(HoaDon hd)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "update hoadon " +
+                    "TongGia=@Tong" +
+                    "TrangThai =@trangthai" +
+                    " where MaHD=@mahd and MaNL=@manl and MaKH=@makh";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("mahd", hd.MaHD);
+                cmd.Parameters.AddWithValue("manl", hd.MaNL);
+                cmd.Parameters.AddWithValue("makh", hd.MaKH);
+                cmd.Parameters.AddWithValue("ngay", hd.NgayLap);
+                cmd.Parameters.AddWithValue("Tong", hd.TongGia);
+                cmd.Parameters.AddWithValue("trangthai", hd.TrangThai);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
+
+        public int DeleteHoaDon(string Id)
+        {
+            
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "delete from hoadon where MaHD=@ma";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("ma", Id);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
         //Khuyen Mai
+        public List<KhuyenMai> GetKhuyenMais()
+        {
+            List<KhuyenMai> list = new List<KhuyenMai>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from khuyenmai";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new KhuyenMai()
+                        {
+                            MaKM = int.Parse(reader["MaKM"].ToString()),
+                            TenKM = reader["TenKM"].ToString(),
+                            TiLe= float.Parse(reader["TiLe"].ToString()),
+                            NgayBD= Convert.ToDateTime(reader["NgayBD"]),
+                            NgayKT = Convert.ToDateTime(reader["NgayKT"]),
+                        });
+                    }
+                    reader.Close();
+                }
+
+                conn.Close();
+
+            }
+            return list;
+        }
+        public int InsertKhuyenMai(KhuyenMai km)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "insert into khuyenmai(MaKH,TenKM,TiLe,NgayBD,NgayKT)values(@ma, @ten,@tl,@bd,@kt)";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("ma", km.MaKM);
+                cmd.Parameters.AddWithValue("ten", km.TenKM);
+                cmd.Parameters.AddWithValue("tl", km.TiLe);
+                cmd.Parameters.AddWithValue("bd", km.NgayBD);
+                cmd.Parameters.AddWithValue("kt", km.NgayKT);
+                return (cmd.ExecuteNonQuery());
+
+            }
+        }
+        public int UpdateKhuyenMai(KhuyenMai km)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "update khuyenmai " +
+                    "set TenKM = @ten " +
+                    "and TiLe=@tl" +
+                    "and NgayBD=@bd" +
+                    "and NgayKT=@kt" +
+                    " where Ma=@ma";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("ma", km.MaKM);
+                cmd.Parameters.AddWithValue("ten", km.TenKM);
+                cmd.Parameters.AddWithValue("tl", km.TiLe);
+                cmd.Parameters.AddWithValue("bd", km.NgayBD);
+                cmd.Parameters.AddWithValue("kt", km.NgayKT);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
+
+        public int DeleteKhuyenMai(string Id)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "delete from khuyenmai where Ma=@ma";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("ma", Id);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
         // Nhan Hieu
+        public List<NhanHieu> GetNhanHieus()
+        {
+            List<NhanHieu> list = new List<NhanHieu>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from nhanhieu";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new NhanHieu()
+                        {
+                            MaNH = reader["MaNH"].ToString(),
+                            TenNH = reader["TenNH"].ToString(),
+                            NoiSX = reader["NoiSX"].ToString(),
+                        });
+                    }
+                    reader.Close();
+                }
+
+                conn.Close();
+
+            }
+            return list;
+        }
+        public int InsertNhanHieu(NhanHieu nh)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "insert into nhanhieu values(@ma, @ten,@noi)";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("ma", nh.MaNH);
+                cmd.Parameters.AddWithValue("ten", nh.TenNH);
+                cmd.Parameters.AddWithValue("noi", nh.NoiSX);
+                return (cmd.ExecuteNonQuery());
+
+            }
+        }
+        public int UpdateNhanHieu(NhanHieu nd)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "update nhanhieu " +
+                    "set TenNH = @ten and NoiSX=@moi" +
+                    " where Ma=@ma";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("ma", nd.MaNH );
+                cmd.Parameters.AddWithValue("ten", nd.TenNH);
+                cmd.Parameters.AddWithValue("noi", nd.NoiSX);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
+
+        public int DeleteNhanHieu(string Id)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "delete from nhanhieu where Ma=@ma";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("ma", Id);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
         //CTHD
+        public List<CTHD> GetCTHDs()
+        {
+            List<CTHD> list = new List<CTHD>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from cthd";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new CTHD()
+                        {
+                            MaHD = int.Parse(reader["MaHD"].ToString()),
+                            MaSP = int.Parse(reader["MaSP"].ToString()),
+                            SoLuong = int.Parse(reader["SoLuong"].ToString()),
+                            MaKM = int.Parse(reader["MaKM"].ToString()),
+                            HTTT= reader["HTTT"].ToString()
+                        });
+                    }
+                    reader.Close();
+                }
+
+                conn.Close();
+
+            }
+            return list;
+        }
+        public int InsertCTHD(CTHD hd)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "insert into cthd(MaSP,MaHD,SoLuong,MaKH,HTTT) values(@masp,@mahd,@soluong, @MaKM,HTTT)";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("masp", hd.MaSP);
+                cmd.Parameters.AddWithValue("mahd", hd.MaHD);
+                cmd.Parameters.AddWithValue("soluong", hd.SoLuong);
+                cmd.Parameters.AddWithValue("MaKM", hd.MaKM);
+                cmd.Parameters.AddWithValue("HTTT", hd.HTTT);
+                return (cmd.ExecuteNonQuery());
+
+            }
+        }
+        public int UpdateCTHD(CTHD hd)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "update cthd " +
+                    "set SoLuong=@soluong and HTTT=@HTTT" +
+                    " where MaHD=@mahd and MaSP=@masp and MaKM=@MaKM";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("masp", hd.MaSP);
+                cmd.Parameters.AddWithValue("mahd", hd.MaHD);
+                cmd.Parameters.AddWithValue("soluong", hd.SoLuong);
+                cmd.Parameters.AddWithValue("MaKM", hd.MaKM);
+                cmd.Parameters.AddWithValue("HTTT", hd.HTTT);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
+
+        public int DeleteCTHD(CTHD ct)
+        {
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "delete from cthd where MaHD=@ma and MaSP=@masp";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("ma", ct.MaHD);
+                cmd.Parameters.AddWithValue("masp", ct.MaSP);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
 
     }
 } 

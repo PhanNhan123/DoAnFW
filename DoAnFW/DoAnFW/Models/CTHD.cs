@@ -11,10 +11,10 @@ namespace DoAnFW.Models
         private int maHD;
         private int soLuong;
         private int maKM;
-        private int hTTT;
+        private string hTTT;
 
         public CTHD() { }
-        public CTHD(int masp, int mahd , int soluong, int makm, int httt)
+        public CTHD(int masp, int mahd , int soluong, int makm, string httt)
         {
             maSP = masp;
             maHD = mahd;
@@ -42,7 +42,7 @@ namespace DoAnFW.Models
             get { return maKM; }
             set { maKM = value; }
         }
-        public int HTTT
+        public string HTTT
         {
             get { return hTTT; }
             set { hTTT = value; }
