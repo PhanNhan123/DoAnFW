@@ -1,7 +1,7 @@
 ﻿
 
 .main {
-height: 1000px;
+height: 2000px;
 width: 100%;
 }
 
@@ -62,7 +62,7 @@ margin: auto;
 
 .list .row .product {
 margin: auto;
-width: 18%;
+width: 30%;
 height: 100%;
 text-align: center;
 }
@@ -98,8 +98,7 @@ display: flex;
 
 .list .row .product .button a {
 margin: auto;
-height: 30px;
-width: 30%;
+width: 40%;
 border: 1px solid #f89406;
 color: #f89406;
 border-radius: 4px;

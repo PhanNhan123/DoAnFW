@@ -1,6 +1,8 @@
 ﻿body {
 font-family: Arial;
 margin: 0;
+width: 100%;
+height: 100%;
 }
 
 * {
@@ -14,8 +16,6 @@ vertical-align: middle;
 }
 
 .main {
-width: 90%;
-height: 200%;
 margin: auto;
 }
 
@@ -38,31 +38,29 @@ margin-top: 5%;
 margin-left: 0%;
 font-weight: bold;
 }
-
 .rowdetail .img-phone {
 position: relative;
-z-index: 0.01px;
-width: 30%;
-height: 50%;
+width: 50%;
+height: 60%;
 text-align: center;
 }
-
+    
 .rowdetail .price {
-width: 30%;
+width: 40%;
 height: 100%;
 }
-
-.rowdetail .parameter {
-width: 30%;
+.rowdetail .table {
+margin-left: 2%;
+float: right;
+width: 50%;
 height: 100%;
 }
-
+    
 .rowdetail .img-phone img {
 margin-top: 5%;
 width: 95%;
 height: 95%;
 }
-
 .rowdetail .price .cost {
 width: 100%;
 height: 15%;
@@ -70,7 +68,6 @@ height: 15%;
 
 .rowdetail .price .promotion {
 border: 1px solid #ddd;
-;
 margin-top: 5%;
 width: 90%;
 height: 55%;
@@ -135,10 +132,9 @@ display: flex;
 margin: auto;
 height: 43px;
 width: 47%;
-border: 1px solid #2654e9;
-color: #2654e9;
-border-radius: 4px;
-background-color: white;
+color: white;
+border-radius: 20px;
+background-color: red;
 text-align: center;
 padding: 5px;
 right: 0;
@@ -146,17 +142,13 @@ left: 0;
 }
 
 .rowdetail .price .button a:hover {
-background-color: red;
+border: 1px solid blue;
+background-color: blue;
 color: white;
 }
 
 .rowdetail .description b {
 font-size: 18px;
-}
-
-.rowdetail .table {
-margin-left: 10%;
-height: 425px;
 }
 
 .rowdetail table tr, td {
