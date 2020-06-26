@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vantich\\Documents\\GitHub\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj": {}
+    "C:\\Users\\Dell\\Desktop\\test\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vantich\\Documents\\GitHub\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj": {
+    "C:\\Users\\Dell\\Desktop\\test\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vantich\\Documents\\GitHub\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\test\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj",
         "projectName": "DoAnFW",
-        "projectPath": "C:\\Users\\Vantich\\Documents\\GitHub\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj",
-        "packagesPath": "C:\\Users\\Vantich\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vantich\\Documents\\GitHub\\DoAnFW\\DoAnFW\\DoAnFW\\obj\\",
+        "projectPath": "C:\\Users\\Dell\\Desktop\\test\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dell\\Desktop\\test\\DoAnFW\\DoAnFW\\DoAnFW\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Vantich\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -53,12 +53,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.2, 3.1.2]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -67,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
