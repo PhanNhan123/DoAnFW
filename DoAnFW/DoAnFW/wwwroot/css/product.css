@@ -17,20 +17,20 @@ vertical-align: middle;
 
 .main {
 margin: auto;
+height: 500px;
+width: 100%;
 }
 
 .namephone {
 width: 100%;
-height: 5%;
+height: 8%;
 }
 
 
 .rowdetail {
-display: flex;
-padding: 10px;
 margin: auto;
 width: 100%;
-height: 50%;
+height: 92%;
 }
 
 .namephone h1 {
@@ -38,29 +38,35 @@ margin-top: 5%;
 margin-left: 0%;
 font-weight: bold;
 }
+
 .rowdetail .img-phone {
 position: relative;
-width: 50%;
-height: 60%;
+width: 29%;
+height: 100%;
 text-align: center;
+float: left;
 }
-    
+
 .rowdetail .price {
-width: 40%;
+width: 30%;
 height: 100%;
+margin-left: 1%;
+float: left;
 }
+
 .rowdetail .table {
-margin-left: 2%;
 float: right;
-width: 50%;
+width: 38%;
 height: 100%;
+font-size: 15px;
 }
-    
+
 .rowdetail .img-phone img {
 margin-top: 5%;
 width: 95%;
-height: 95%;
+height: 90%;
 }
+
 .rowdetail .price .cost {
 width: 100%;
 height: 15%;
@@ -130,7 +136,7 @@ display: flex;
 
 .rowdetail .price .button a {
 margin: auto;
-height: 43px;
+height: 47px;
 width: 47%;
 color: white;
 border-radius: 20px;
@@ -142,24 +148,28 @@ left: 0;
 }
 
 .rowdetail .price .button a:hover {
-border: 1px solid blue;
-background-color: blue;
+border: 1px solid rgb(172, 2, 2);
+background-color: rgb(172, 2, 2);
 color: white;
+padding: 5px;
 }
 
 .rowdetail .description b {
 font-size: 18px;
 }
 
-.rowdetail table tr, td {
-color: #3c3d41;
-border-bottom: solid 1px #eee;
-padding: 5px;
-}
 
 .rowdetail table tr {
 color: #3c3d41;
 border-bottom: solid 1px #eee;
-padding: 5px;
 display: table-row;
+}
+
+.rowdetail table tr, td {
+color: #3c3d41;
+border-bottom: solid 1px #eee;
+}
+
+.rowdetail table tr td {
+width: 20%;
 }
