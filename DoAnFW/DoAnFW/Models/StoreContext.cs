@@ -10,7 +10,11 @@ namespace DoAnFW.Models
         {
             this.ConnectionString = connectionString;
         }
-        private MySqlConnection GetConnection() //lấy connection 
+        public StoreContext()
+        {
+            this.ConnectionString = "";
+        }
+        public MySqlConnection GetConnection() //lấy connection 
         {
             return new MySqlConnection(ConnectionString);
         }
@@ -32,8 +36,8 @@ namespace DoAnFW.Models
                         {
                             Ma = int.Parse(reader["Ma"].ToString()),
                             Ten = reader["Ten"].ToString(),
-                            TaiKhoan=reader["TaiKhoan"].ToString(),
-                            MatKhau= reader["MatKhau"].ToString()
+                            TaiKhoan = reader["TaiKhoan"].ToString(),
+                            MatKhau = reader["MatKhau"].ToString()
                         });
                     }
                     reader.Close();
@@ -160,6 +164,7 @@ namespace DoAnFW.Models
                 return (cmd.ExecuteNonQuery());
             }
         }
+        //San Pham
         // Hoa Don
         public List<HoaDon> GetHoaDons()
         {
@@ -204,7 +209,7 @@ namespace DoAnFW.Models
                 cmd.Parameters.AddWithValue("makh", hd.MaKH);
                 cmd.Parameters.AddWithValue("ngay", hd.NgayLap);
                 cmd.Parameters.AddWithValue("Tong", hd.TongGia);
-                cmd.Parameters.AddWithValue("trangthai",hd.TrangThai);
+                cmd.Parameters.AddWithValue("trangthai", hd.TrangThai);
                 return (cmd.ExecuteNonQuery());
 
             }
@@ -231,7 +236,7 @@ namespace DoAnFW.Models
 
         public int DeleteHoaDon(string Id)
         {
-            
+
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
@@ -259,8 +264,8 @@ namespace DoAnFW.Models
                         {
                             MaKM = int.Parse(reader["MaKM"].ToString()),
                             TenKM = reader["TenKM"].ToString(),
-                            TiLe= float.Parse(reader["TiLe"].ToString()),
-                            NgayBD= Convert.ToDateTime(reader["NgayBD"]),
+                            TiLe = float.Parse(reader["TiLe"].ToString()),
+                            NgayBD = Convert.ToDateTime(reader["NgayBD"]),
                             NgayKT = Convert.ToDateTime(reader["NgayKT"]),
                         });
                     }
@@ -372,7 +377,7 @@ namespace DoAnFW.Models
                     "set TenNH = @ten and NoiSX=@moi" +
                     " where Ma=@ma";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
-                cmd.Parameters.AddWithValue("ma", nd.MaNH );
+                cmd.Parameters.AddWithValue("ma", nd.MaNH);
                 cmd.Parameters.AddWithValue("ten", nd.TenNH);
                 cmd.Parameters.AddWithValue("noi", nd.NoiSX);
                 return (cmd.ExecuteNonQuery());
@@ -410,7 +415,7 @@ namespace DoAnFW.Models
                             MaSP = int.Parse(reader["MaSP"].ToString()),
                             SoLuong = int.Parse(reader["SoLuong"].ToString()),
                             MaKM = int.Parse(reader["MaKM"].ToString()),
-                            HTTT= reader["HTTT"].ToString()
+                            HTTT = reader["HTTT"].ToString()
                         });
                     }
                     reader.Close();
@@ -468,6 +473,121 @@ namespace DoAnFW.Models
                 return (cmd.ExecuteNonQuery());
             }
         }
+        //----------------------Admin Area----------------------
+
+
+
+
+
+        //public string GetLastID(string tableName, string nameOfColumn)
+        //{
+        //    using (MySqlConnection conn = GetConnection())
+        //    {
+        //        string LastID;
+        //        conn.Open();
+
+        //        string sql = "select Max(@name) as Ma from " + tableName;
+        //        MySqlCommand cmd = new MySqlCommand(sql, conn);
+        //        cmd.Parameters.AddWithValue("name", nameOfColumn);
+        //        using (var reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                LastID = reader["Ma"].ToString();
+        //            }
+
+        //        }
+        //        return LastID;
+
+        //    }
+        //}
+
+
+
+        //San pham
+        public List<object> GetListSPAdmin()
+        {
+            List<object> lt = new List<object>();
+            using (MySqlConnection conn = GetConnection())
+            {
+
+                conn.Open();
+                String sql = "select s.MaSP,TenSP,TenNH,Gia,SoLuongTon " +
+                    "from sanpham s, tonkho t, nhanhieu h " +
+                    "where s.MaSP=t.MaSP and h.MaNH=s.MaNH ";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var ob = new
+                        {
+                            MaSP = int.Parse(reader["MaSP"].ToString()),
+                            TenSP = reader["TenSP"].ToString(),
+                            TenNH = reader["TenNH"].ToString(),
+                            Gia = double.Parse(reader["Gia"].ToString()),
+                            SoLuongTon = int.Parse(reader["SoLuongTon"].ToString())
+                        };
+
+                        lt.Add(ob);
+                    }
+                }
+
+            }
+            return lt;
+        }
+
+        public object GetSanPhamById(int id)
+        {
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "select * sanpham where MaSP=@ma";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                var reader = cmd.ExecuteReader();
+                var oj = new
+                {
+                    MaSP = int.Parse(reader["MaSP"].ToString()),
+                    TenSP = reader["TenSP"].ToString(),
+                    MaNH = reader["MaNH"].ToString(),
+                    IMG = reader["IMG"].ToString(),
+                    Gia = double.Parse(reader["Gia"].ToString()),
+                    TuongThich = reader["TuongThich"].ToString(),
+                    Jack_cam = reader["Jack_cam"].ToString(),
+                    KichThuoc = reader["KichThuoc"].ToString(),
+                    CongNghe = reader["CongNghe"].ToString(),
+                    TrongLuong = reader["TrongLuong"].ToString()
+                };
+                return oj;
+            }
+
+        }
+
+        //Nhan hieu
+
+        public object GetNhanHieuById(int id)
+        {
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "select * nhanhieu where MaNH=@ma";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                var reader = cmd.ExecuteReader();
+                var oj = new
+                {
+                    MaNH = reader["MaNH"].ToString(),
+                    TenNH = reader["TenNH"].ToString(),
+                    NoiSX = reader["NoiSX"].ToString(),
+                };
+                return oj;
+            }
+
+        }
+
+
+
 
     }
-} 
+}

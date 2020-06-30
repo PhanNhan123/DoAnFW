@@ -9,6 +9,7 @@ namespace DoAnFW.Models
     {
         private int maSP;
         private string tenSP;
+        private string img;
         private string maNH;
         private double gia;
         private string tuongThich;
@@ -63,7 +64,11 @@ namespace DoAnFW.Models
             get { return trongLuong; }
             set { trongLuong = value; }
         }
-
+        public string IMG
+        {
+            get { return img; }
+            set { img = value; }
+        }
     }
 
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dell\\Desktop\\test\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj": {}
+    "C:\\Users\\Dell\\Desktop\\New folder\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dell\\Desktop\\test\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj": {
+    "C:\\Users\\Dell\\Desktop\\New folder\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\test\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\New folder\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj",
         "projectName": "DoAnFW",
-        "projectPath": "C:\\Users\\Dell\\Desktop\\test\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj",
+        "projectPath": "C:\\Users\\Dell\\Desktop\\New folder\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj",
         "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dell\\Desktop\\test\\DoAnFW\\DoAnFW\\DoAnFW\\obj\\",
+        "outputPath": "C:\\Users\\Dell\\Desktop\\New folder\\DoAnFW\\DoAnFW\\DoAnFW\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -38,6 +38,20 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.3, )"

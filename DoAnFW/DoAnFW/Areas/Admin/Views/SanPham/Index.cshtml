@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+@model List<Object>
+@{ int i = 1; }
+<div class="table-responsive table-responsive-data2">
+    <table class="table table-data2">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã SP</th>
+                <th>Tên</th>
+                <th>Nhà sản xuất</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+
+            <tbody>
+                <tr class="tr-shadow">
+                    <td>@i</td>
+                    <td>
+                        <span class="block-email">@item.GetType().GetProperty("MaSP").GetValue(item, null)</span>
+                    </td>
+                    <td class="desc">@item.GetType().GetProperty("TenSP").GetValue(item, null)</td>
+                    <td>@item.GetType().GetProperty("TenNH").GetValue(item, null)</td>
+                    <td>
+                        <span class="status--process">@item.GetType().GetProperty("Gia").GetValue(item, null)</span>
+                    </td>
+                    <td>@item.GetType().GetProperty("SoLuongTon").GetValue(item, null)</td>
+                    <td>
+                        <div class="table-data-feature">
+                            <button class="item" data-toggle="tooltip" data-placement="top" title="Edit" id="@item.GetType().GetProperty("MaSP").GetValue(item, null)">
+                                <i class="zmdi zmdi-edit"></i>
+                            </button>
+                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                <i class="zmdi zmdi-delete"></i>
+                            </button>
+
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            i = i + 1;
+        }
+    </table>
+
+</div>

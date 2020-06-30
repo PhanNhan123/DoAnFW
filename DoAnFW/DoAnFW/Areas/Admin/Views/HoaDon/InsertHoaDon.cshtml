@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "InserHoaDon";
+    Layout = "_Layout";
+}
+
+
+<div class="card-header">
+    <i class="fab fa-shopify"></i>&ensp;<strong>Tạo hóa đơn</strong>
+</div>
+<div class="card-body card-block">
+    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label class=" form-control-label">Mã hóa đơn</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <p class="form-control-static">//<i>Mã hóa đơn sẽ tự động tạo</i></p>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="select" class=" form-control-label">Mã người dùng</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <select name="select" id="select" class="form-control">
+                    <option value="0">Chọn mã người dùng</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="select" class=" form-control-label">Mã khách hàng</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <select name="select" id="select" class="form-control">
+                    <option value="0">Chọn mã khách hàng</option>
+                    <option value="1">100001</option>
+                    <option value="2">100002</option>
+                    <option value="3">100003</option>
+                </select>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="cc-exp" class="control-label mb-1">Ngày tạo</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <input id="cc-exp" name="cc-exp" type="tel" class="form-control cc-exp" value="" data-val="true" placeholder="DD/MM / YY"
+                       autocomplete="cc-exp">
+            </div>
+        </div>
+
+    </form>
+</div>
