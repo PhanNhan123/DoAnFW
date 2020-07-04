@@ -5,12 +5,16 @@
 }
 @model List<Object>
 @{ int i = 1; }
+<h1>Quản lý thông tin sản phẩm</h1>
+<br/>
 <div class="table-responsive table-responsive-data2">
+    <input type="button" class="btn btn-primary" value="THÊM SẢN PHẨM" onclick="location.href='@Url.Action("EnterSanPham", "SanPham")'" />
     <table class="table table-data2">
         <thead>
             <tr>
                 <th>STT</th>
                 <th>Mã SP</th>
+                <th>Ảnh</th>
                 <th>Tên</th>
                 <th>Nhà sản xuất</th>
                 <th>Giá</th>
@@ -27,6 +31,9 @@
                     <td>
                         <span class="block-email">@item.GetType().GetProperty("MaSP").GetValue(item, null)</span>
                     </td>
+
+                    <td><img class="img-rounded" height="100" src="~/image/tai-nghe-iphone-5.jpg" /></td>
+
                     <td class="desc">@item.GetType().GetProperty("TenSP").GetValue(item, null)</td>
                     <td>@item.GetType().GetProperty("TenNH").GetValue(item, null)</td>
                     <td>
@@ -38,9 +45,9 @@
                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit" id="@item.GetType().GetProperty("MaSP").GetValue(item, null)">
                                 <i class="zmdi zmdi-edit"></i>
                             </button>
-                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                            <a href="DeleteSanPham?Id=1">
                                 <i class="zmdi zmdi-delete"></i>
-                            </button>
+                            </a>
 
                         </div>
                     </td>

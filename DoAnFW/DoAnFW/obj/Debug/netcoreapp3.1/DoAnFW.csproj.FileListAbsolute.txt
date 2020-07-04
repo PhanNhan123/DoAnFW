@@ -360,4 +360,7 @@ C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Ra
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\HoaDon\Index.cshtml.g.cs
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\HoaDon\InsertHoaDon.cshtml.g.cs
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\FileUpload\Index.cshtml.g.cs
-C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\SanPham\Form.cshtml.g.cs
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\SanPham\EnterSanPham.cshtml.g.cs
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\SanPham\EditSanPham.cshtml.g.cs
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Statistics\Index.cshtml.g.cs

@@ -1,6 +1,8 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using Org.BouncyCastle.Asn1.Cms;
+
 namespace DoAnFW.Models
 {
     public class StoreContext
@@ -165,6 +167,89 @@ namespace DoAnFW.Models
             }
         }
         //San Pham
+        public int InsertSanPham(SanPham a)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "insert into SanPham (TenSP,MoTa,IMG,MaNH,Gia,TuongThich,Jack_cam,KichThuoc,CongNghe,TrongLuong) " +
+                    "values (@ten,@mota,@IMG,@MaNH,@Gia,@TuongThich,@Jack,@Kthuoc,@CN,@TrongLuong)";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("ten", a.TenSP);
+                cmd.Parameters.AddWithValue("mota", a.MoTa);
+                cmd.Parameters.AddWithValue("IMG", a.IMG);
+                cmd.Parameters.AddWithValue("Gia", a.Gia);
+                cmd.Parameters.AddWithValue("TuongThich", a.TuongThich);
+                cmd.Parameters.AddWithValue("Jack", a.Jack_cam);
+                cmd.Parameters.AddWithValue("Kthuoc", a.KichThuoc);
+                cmd.Parameters.AddWithValue("CN", a.CongNghe);
+                cmd.Parameters.AddWithValue("TrongLuong", a.TrongLuong);
+                cmd.Parameters.AddWithValue("MaNH", a.MaNH);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
+        public int DeleteSanPham(string Id)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "delete from sanpham where MaSP=@ma";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("ma", Id);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
+
+        public int GetIDSanPham(SanPham a)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "select MaSP " +
+                    "from sanpham " +
+                    "where TenSP=@ten " +
+                    "and IMG =@IMG " +
+                    "and Gia=@Gia " +
+                    "and MaNH=@MaNH ";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("ten", a.TenSP);
+                cmd.Parameters.AddWithValue("IMG", a.IMG);
+                cmd.Parameters.AddWithValue("Gia", a.Gia);
+                cmd.Parameters.AddWithValue("MaNH", a.MaNH);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    return (int.Parse(reader["MaSP"].ToString()));
+                }
+            }
+        }
+        //TonKho
+        public int InsertTonKho(int MaSP, int SoLuongTon)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "insert into TonKho(MaSP,SoLuongTon) values(@MaSP,@SoLuongTon)";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("MaSP", MaSP);
+                cmd.Parameters.AddWithValue("SoLuongTon", SoLuongTon);
+
+                return (cmd.ExecuteNonQuery());
+
+            }
+        }
+
+        public int DeleteSP_TonKho(string MaSP)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "delete from tonkho where MaSP=@ma";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("ma", MaSP);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
         // Hoa Don
         public List<HoaDon> GetHoaDons()
         {
@@ -276,6 +361,7 @@ namespace DoAnFW.Models
 
             }
             return list;
+
         }
         public int InsertKhuyenMai(KhuyenMai km)
         {
@@ -537,7 +623,7 @@ namespace DoAnFW.Models
             return lt;
         }
 
-        public object GetSanPhamById(int id)
+        public SanPham GetSanPhamById(int id)
         {
 
             using (MySqlConnection conn = GetConnection())
@@ -546,19 +632,20 @@ namespace DoAnFW.Models
                 string sql = "select * sanpham where MaSP=@ma";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 var reader = cmd.ExecuteReader();
-                var oj = new
-                {
-                    MaSP = int.Parse(reader["MaSP"].ToString()),
-                    TenSP = reader["TenSP"].ToString(),
-                    MaNH = reader["MaNH"].ToString(),
-                    IMG = reader["IMG"].ToString(),
-                    Gia = double.Parse(reader["Gia"].ToString()),
-                    TuongThich = reader["TuongThich"].ToString(),
-                    Jack_cam = reader["Jack_cam"].ToString(),
-                    KichThuoc = reader["KichThuoc"].ToString(),
-                    CongNghe = reader["CongNghe"].ToString(),
-                    TrongLuong = reader["TrongLuong"].ToString()
-                };
+                SanPham oj = new SanPham();
+
+                oj.MaSP = int.Parse(reader["MaSP"].ToString());
+                oj.TenSP = reader["TenSP"].ToString();
+                oj.MaNH = reader["MaNH"].ToString();
+                oj.MoTa = reader["MoTa"].ToString();
+                oj.IMG = reader["IMG"].ToString();
+                oj.Gia = double.Parse(reader["Gia"].ToString());
+                oj.TuongThich = reader["TuongThich"].ToString();
+                oj.Jack_cam = reader["Jack_cam"].ToString();
+                oj.KichThuoc = reader["KichThuoc"].ToString();
+                oj.CongNghe = reader["CongNghe"].ToString();
+                oj.TrongLuong = reader["TrongLuong"].ToString();
+
                 return oj;
             }
 
@@ -585,9 +672,6 @@ namespace DoAnFW.Models
             }
 
         }
-
-
-
 
     }
 }

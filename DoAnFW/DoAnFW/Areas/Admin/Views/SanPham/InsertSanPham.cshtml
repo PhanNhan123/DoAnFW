@@ -1,123 +1,23 @@
-﻿@model IEnumerable<DoAnFW.Models.NhanHieu>
+﻿
 @{
     ViewData["Title"] = "InsertSanPham";
     Layout = "_Layout";
 }
 
-<div class="card-header">
-    <i class="fab fa-shopify"></i>&ensp;<strong>Thêm Sản Phẩm</strong>
-</div>
-<div class="card-body card-block">
-
-
-    <form action="Form" method="POST" enctype="multipart/form-data" class="form-horizontal">
-
-
-        <div class="row form-group">
-            <div class="col col-md-3">
-                <label class=" form-control-label">Mã sản phẩm</label>
-            </div>
-            <div class="col-12 col-md-9">
-                <p class="form-control-static">//<i>Mã sản phẩm sẽ tự động tạo</i></p>
-            </div>
+<h1>Kết quả</h1>
+<br />
+@{
+    if (ViewBag.result == 1)
+    {
+        <div class="alert alert-success" role="alert">
+            Thêm sản phẩm thành công
         </div>
-
-        <div class="row form-group">
-            <div class="col col-md-3">
-                <label for="text-input" class=" form-control-label">Tên sản phẩm</label>
-            </div>
-            <div class="col-12 col-md-9">
-                <input type="text" id="TenSP" name="TenSP" placeholder="Tên sản phẩm" class="form-control">
-            </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            Thêm sản phẩm không thành công
         </div>
-        <div class="row form-group">
-            <div class="col col-md-3">
-                <label for="select" class=" form-control-label">Thương hiệu</label>
-            </div>
-            <div class="col-12 col-md-9">
-                <select name="MaNH" id="MaNH" class="form-control">
-
-                    @foreach (var item in Model)
-                    {
-                        <option value="@item.MaNH" id="@item.MaNH">@item.TenNH</option>
-                    }
-                </select>
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col col-md-3">
-                <label class=" form-control-label">Giá</label>
-            </div>
-            <div class="col-12 col-md-9">
-                <input type="number" id="Gia" name="Gia" placeholder="0đ" class="form-control">
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col col-md-3">
-                <label for="textarea-input" class=" form-control-label">Mô tả</label>
-            </div>
-            <div class="col-12 col-md-9">
-                <textarea name="MoTa" id="MoTa" rows="9" placeholder="mô tả sản phẩm" class="form-control"></textarea>
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col col-md-3">
-                <label for="img-input" class=" form-control-label">Thêm Ảnh </label>
-            </div>
-            <div class="col-12 col-md-9">
-                <input type="file" id="IMG" name="IMG" placeholder="" class="form-control">
-            </div>
-        </div>
-
-
-        <div class="row form-group">
-            <div class="col col-md-3">
-                <label for="password-input" class=" form-control-label">Tương thích</label>
-            </div>
-            <div class="col-12 col-md-9">
-                <input type="text" id="TuongTich" name="TuongTich" placeholder="" class="form-control">
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col col-md-3">
-                <label for="password-input" class=" form-control-label">Jack cắm</label>
-            </div>
-            <div class="col-12 col-md-9">
-                <input type="text" id="Jack-cam" name="Jack-cam" placeholder="" class="form-control">
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col col-md-3">
-                <label for="password-input" class=" form-control-label">Kích thước</label>
-            </div>
-            <div class="col-12 col-md-9">
-                <input type="text" id="KichThuoc" name="KichThuoc" placeholder="" class="form-control">
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col col-md-3">
-                <label for="password-input" class=" form-control-label">Công nghệ</label>
-            </div>
-            <div class="col-12 col-md-9">
-                <input type="text" id="CongNghe" name="CongNghe" placeholder="" class="form-control">
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col col-md-3">
-                <label for="password-input" class=" form-control-label">Trọng lượng</label>
-            </div>
-            <div class="col-12 col-md-9">
-                <input type="text" id="TrongLuong" name="TrongLuong" placeholder="" class="form-control">
-            </div>
-        </div>
-        <div class="card-footer">
-            <button type="submit" class="btn btn-primary btn-sm">
-                <i class="fa fa-dot-circle-o"></i> Thêm
-            </button>
-            <button type="reset" class="btn btn-danger btn-sm">
-                <i class="fa fa-ban"></i> Nhập lại
-            </button>
-        </div>
-    </form>
-</div>
+    }
+}
 

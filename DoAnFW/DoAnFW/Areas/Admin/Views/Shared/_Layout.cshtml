@@ -37,7 +37,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="@Url.Action("Index", "Home")">
                             <img src="~/Admin/images/icon/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -159,7 +159,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
+                <a href="@Url.Action("Index", "Home")">
                     <img src="~/Admin/images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
@@ -172,7 +172,7 @@
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a asp-area="Admin" asp-controller="SanPham" asp-action="Index">Sản Phẩm</a>
+                                    <a href="@Url.Action("Index", "SanPham")">Sản Phẩm</a>
                                 </li>
                                 <li>
                                     <a href="index2.html">Hóa Đơn</a>
@@ -181,7 +181,7 @@
                                     <a href="index3.html">Khách Hàng</a>
                                 </li>
                                 <li>
-                                    <a href="index4.html">Thống kê</a>
+                                    <a href="@Url.Action("Index", "Statistics")">Thống kê</a>
                                 </li>
                             </ul>
                         </li>
@@ -482,7 +482,6 @@
     <script src="~/Admin/vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="~/Admin/vendor/select2/select2.min.js">
     </script>
-
     <!-- Main JS-->
     <script src="~/Admin/js/main.js"></script>
 

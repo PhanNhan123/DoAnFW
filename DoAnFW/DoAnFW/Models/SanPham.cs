@@ -9,6 +9,7 @@ namespace DoAnFW.Models
     {
         private int maSP;
         private string tenSP;
+        private string moTa;
         private string img;
         private string maNH;
         private double gia;
@@ -32,6 +33,11 @@ namespace DoAnFW.Models
         {
             get { return maNH; }
             set { maNH = value; }
+        }
+        public string MoTa
+        {
+            get { return moTa; }
+            set { moTa = value; }
         }
         public double Gia
         {
