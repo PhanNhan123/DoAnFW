@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using Org.BouncyCastle.Asn1.Cms;
+using Org.BouncyCastle.Asn1.Cmp;
 
 namespace DoAnFW.Models
 {
@@ -561,7 +562,32 @@ namespace DoAnFW.Models
         }
         //----------------------Admin Area----------------------
 
+        //Login
+        public NguoiDung Login(string user, string pass)
+        {
+            NguoiDung temp = new NguoiDung();
+            temp.Ma = 0;
+            MySqlConnection conn = GetConnection();
+            conn.Open();
+            string sql = "select Ma,Ten,TaiKhoan " +
+                "from nguoidung " +
+                "where TaiKhoan=@user and MatKhau=@pass " +
+                "limit 1";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("user", user);
+            cmd.Parameters.AddWithValue("pass", pass);
+            var result = cmd.ExecuteReader();
+            while (result.Read())
+            {
+                temp.Ma = int.Parse(result["Ma"].ToString());
+                temp.TaiKhoan = result["TaiKhoan"].ToString();
+                temp.Ten = result["Ten"].ToString();
+                temp.MatKhau = null;
+            }
+            conn.Close();
 
+            return temp;
+        }
 
 
 
@@ -587,6 +613,18 @@ namespace DoAnFW.Models
 
         //    }
         //}
+        public List<object> GetBarChart()
+        {
+            List<object> list = new List<object>();
+            string sql = "";
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+            }
+            return list;
+        }
 
 
 
