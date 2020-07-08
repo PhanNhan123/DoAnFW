@@ -1,16 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DoAnFW.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace DoAnFW.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class SanPhamController : Controller
     {
+        private readonly IHostingEnvironment _hostingEnvironment;
+        public SanPhamController(IHostingEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
         public IActionResult Index()
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
@@ -23,12 +32,11 @@ namespace DoAnFW.Areas.Admin.Controllers
             return View(context.GetNhanHieus());
         }
         [HttpPost]
-        public IActionResult InsertSanPham(string TenSP, string MaNH, string IMG, double Gia, int SoLuong, string MoTa, string TuongThich, string Jack_cam, string KichThuoc, string CongNghe, string TrongLuong)
+        public IActionResult InsertSanPham(string TenSP, string MaNH, IFormFile IMG, double Gia, int SoLuong, string MoTa, string TuongThich, string Jack_cam, string KichThuoc, string CongNghe, string TrongLuong)
         {
             SanPham t = new SanPham();
             t.TenSP = TenSP;
             t.MoTa = MoTa;
-            t.IMG = IMG;
             t.MaNH = MaNH;
             t.Gia = Gia;
             t.TuongThich = TuongThich;
@@ -36,6 +44,17 @@ namespace DoAnFW.Areas.Admin.Controllers
             t.KichThuoc = KichThuoc;
             t.CongNghe = CongNghe;
             t.TrongLuong = TrongLuong;
+            string uniqueFileName = null;
+            var uploadFoder = Path.Combine(_hostingEnvironment.WebRootPath, "image");
+            if (IMG.FileName == null)
+            {
+                return BadRequest("Vui lòng chọn ảnh");
+            }
+            uniqueFileName = Guid.NewGuid().ToString() + "_" + IMG.FileName;
+            var filePath = Path.Combine(uploadFoder, uniqueFileName);
+            IMG.CopyTo(new FileStream(filePath, FileMode.Create));
+            t.IMG = uniqueFileName;
+
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
             int count = context.InsertSanPham(t);
             int id = 0;
@@ -51,13 +70,25 @@ namespace DoAnFW.Areas.Admin.Controllers
             }
             return View();
         }
-
+        [HttpGet]
         public IActionResult EditSanPham(int id)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
             return View(context.GetSanPhamById(id));
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditSanPham(SanPham sp)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
+            var result = context.UpdateSanPham(sp);
+            if (result > 0)
+                ViewData["thongbao"] = "Sửa thành công";
+            else
+                ViewData["thongbao"] = "Sửa không thành công";
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
         public IActionResult DeleteSanPham(string Id)
         {
             string temp = Id;
@@ -72,7 +103,7 @@ namespace DoAnFW.Areas.Admin.Controllers
             {
                 ViewBag.result = "Xóa sản phẩm không thành công";
             }
-            return View();
+            return RedirectToAction("Index");
 
         }
     }
