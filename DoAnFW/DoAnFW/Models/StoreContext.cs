@@ -189,6 +189,39 @@ namespace DoAnFW.Models
                 return (cmd.ExecuteNonQuery());
             }
         }
+        public int UpdateSanPham(SanPham sp)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "update sanpham " +
+                    "TenSP=@ten" +
+                    "MoTa=@mota" +
+                    "IMG =@IMG" +
+                    "Gia=@Gia" +
+                    "TuongThich =@TuongThich" +
+                    "Jack_cam=@Jack_cam" +
+                    "KichThuoc =@Kthuoc" +
+                    "CongNghe=@CN" +
+                    "TrongLuong =@TrongLuong" +
+                    "MaNH =@MaNH" +
+                    " where MaSP=@masp";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+               cmd.Parameters.AddWithValue("ten", sp.TenSP);
+                cmd.Parameters.AddWithValue("mota", sp.MoTa);
+                cmd.Parameters.AddWithValue("IMG", sp.IMG);
+                cmd.Parameters.AddWithValue("Gia", sp.Gia);
+                cmd.Parameters.AddWithValue("TuongThich", sp.TuongThich);
+                cmd.Parameters.AddWithValue("Jack", sp.Jack_cam);
+                cmd.Parameters.AddWithValue("Kthuoc", sp.KichThuoc);
+                cmd.Parameters.AddWithValue("CN", sp.CongNghe);
+                cmd.Parameters.AddWithValue("TrongLuong", sp.TrongLuong);
+                cmd.Parameters.AddWithValue("MaNH", sp.MaNH);
+                cmd.Parameters.AddWithValue("masp", sp.MaSP);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
+
         public int DeleteSanPham(string Id)
         {
             using (MySqlConnection conn = GetConnection())
@@ -319,6 +352,7 @@ namespace DoAnFW.Models
                 return (cmd.ExecuteNonQuery());
             }
         }
+      
 
         public int DeleteHoaDon(string Id)
         {
@@ -326,7 +360,7 @@ namespace DoAnFW.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                var str = "delete from hoadon where MaHD=@ma";
+                var str = "delete from hoadon where MaHD=" + Id;
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("ma", Id);
                 return (cmd.ExecuteNonQuery());
@@ -636,7 +670,7 @@ namespace DoAnFW.Models
             {
 
                 conn.Open();
-                String sql = "select s.MaSP,TenSP,TenNH,Gia,SoLuongTon " +
+                String sql = "select IMG, s.MaSP,TenSP,TenNH,Gia,SoLuongTon " +
                     "from sanpham s, tonkho t, nhanhieu h " +
                     "where s.MaSP=t.MaSP and h.MaNH=s.MaNH ";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -646,6 +680,7 @@ namespace DoAnFW.Models
                     {
                         var ob = new
                         {
+                            IMG = reader["IMG"].ToString(),
                             MaSP = int.Parse(reader["MaSP"].ToString()),
                             TenSP = reader["TenSP"].ToString(),
                             TenNH = reader["TenNH"].ToString(),
@@ -660,6 +695,26 @@ namespace DoAnFW.Models
             }
             return lt;
         }
+        public HoaDon GetHoaDonById(int id)
+        {
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "select * from hoadon where MAHD=" + id;
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                var reader = cmd.ExecuteReader();
+                HoaDon hd = new HoaDon();
+                hd.MaHD = int.Parse(reader["MaHD"].ToString());
+                hd.MaNL = int.Parse(reader["MaNL"].ToString());
+                hd.MaKH = int.Parse(reader["MaKH"].ToString());
+                hd.NgayLap = Convert.ToDateTime(reader["NgayLap"].ToString());
+                hd.TongGia = float.Parse(reader["TongGia"].ToString());
+                hd.TrangThai = reader["TrangThai"].ToString();
+                return hd;
+            }
+
+        }
 
         public SanPham GetSanPhamById(int id)
         {
@@ -667,11 +722,11 @@ namespace DoAnFW.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string sql = "select * sanpham where MaSP=@ma";
+                string sql = "select * from sanpham where MaSP="+id;
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 var reader = cmd.ExecuteReader();
+                reader.Read();
                 SanPham oj = new SanPham();
-
                 oj.MaSP = int.Parse(reader["MaSP"].ToString());
                 oj.TenSP = reader["TenSP"].ToString();
                 oj.MaNH = reader["MaNH"].ToString();

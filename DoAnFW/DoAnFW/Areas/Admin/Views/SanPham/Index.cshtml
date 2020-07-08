@@ -1,4 +1,4 @@
-﻿
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Index";
     Layout = "_Layout";
@@ -6,7 +6,7 @@
 @model List<Object>
 @{ int i = 1; }
 <h1>Quản lý thông tin sản phẩm</h1>
-<br/>
+<br />
 <div class="table-responsive table-responsive-data2">
     <input type="button" class="btn btn-primary" value="THÊM SẢN PHẨM" onclick="location.href='@Url.Action("EnterSanPham", "SanPham")'" />
     <table class="table table-data2">
@@ -24,7 +24,7 @@
         </thead>
         @foreach (var item in Model)
         {
-
+            var imagePath = "/image/" + (item.GetType().GetProperty("IMG").GetValue(item, null));
             <tbody>
                 <tr class="tr-shadow">
                     <td>@i</td>
@@ -32,7 +32,7 @@
                         <span class="block-email">@item.GetType().GetProperty("MaSP").GetValue(item, null)</span>
                     </td>
 
-                    <td><img class="img-rounded" height="100" src="~/image/tai-nghe-iphone-5.jpg" /></td>
+                    <td><img class="img-rounded" height="100" src="@imagePath" /></td>
 
                     <td class="desc">@item.GetType().GetProperty("TenSP").GetValue(item, null)</td>
                     <td>@item.GetType().GetProperty("TenNH").GetValue(item, null)</td>
@@ -42,12 +42,14 @@
                     <td>@item.GetType().GetProperty("SoLuongTon").GetValue(item, null)</td>
                     <td>
                         <div class="table-data-feature">
-                            <button class="item" data-toggle="tooltip" data-placement="top" title="Edit" id="@item.GetType().GetProperty("MaSP").GetValue(item, null)">
+                            <a asp-action="EditSanPham"asp-route-id="@item.GetType().GetProperty("MaSP").GetValue(item, null)" class="item" data-toggle="tooltip" data-placement="top" title="Edit" id="@item.GetType().GetProperty("MaSP").GetValue(item, null)">
                                 <i class="zmdi zmdi-edit"></i>
-                            </button>
-                            <a href="DeleteSanPham?Id=1">
-                                <i class="zmdi zmdi-delete"></i>
                             </a>
+                            <form asp-action="DeleteSanPham" asp-route-Id="@item.GetType().GetProperty("MaSP").GetValue(item, null)" class="d-inline">
+                                <button class="item" type="submit" title="Delete">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                            </form>
 
                         </div>
                     </td>

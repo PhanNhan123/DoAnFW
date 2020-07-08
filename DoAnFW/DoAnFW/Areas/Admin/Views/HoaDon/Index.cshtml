@@ -1,4 +1,4 @@
-﻿
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Index";
     Layout = "_Layout";
@@ -40,12 +40,15 @@
                     <td>@item.GetType().GetProperty("TrangThai").GetValue(item, null)</td>
                     <td>
                         <div class="table-data-feature">
+
                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit" id="@item.GetType().GetProperty("MaHD").GetValue(item, null)">
                                 <i class="zmdi zmdi-edit"></i>
                             </button>
-                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                <i class="zmdi zmdi-delete"></i>
-                            </button>
+                            <form asp-action="DeleteHoaDon" asp-route-Id="@item.GetType().GetProperty("MaHD").GetValue(item, null)" class="d-inline">
+                                <button class="item" type="submit" title="Delete">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                            </form>
 
                         </div>
                     </td>
