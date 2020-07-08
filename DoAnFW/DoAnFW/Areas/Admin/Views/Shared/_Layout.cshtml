@@ -48,6 +48,8 @@
                     </div>
                 </div>
             </div>
+
+            @*---------------Moblie-----------------*@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
@@ -154,6 +156,9 @@
                     </ul>
                 </div>
             </nav>
+
+
+
         </header>
         <!-- END HEADER MOBILE-->
         <!-- MENU SIDEBAR-->
@@ -210,6 +215,11 @@
                                 <i class="fas fa-map-marker-alt"></i>Maps
                             </a>
                         </li>
+                        <li>
+                            <a href="@Url.Action("Logout","Home")">
+                                <i class="fas fa-sign-out-alt" aria-hidden="true"></i>Log Out
+                            </a>
+                        </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Pages
@@ -264,6 +274,7 @@
                                 <li>
                                     <a href="typo.html">Typography</a>
                                 </li>
+
                             </ul>
                         </li>
                     </ul>

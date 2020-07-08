@@ -207,7 +207,7 @@ namespace DoAnFW.Models
                     "MaNH =@MaNH" +
                     " where MaSP=@masp";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
-               cmd.Parameters.AddWithValue("ten", sp.TenSP);
+                cmd.Parameters.AddWithValue("ten", sp.TenSP);
                 cmd.Parameters.AddWithValue("mota", sp.MoTa);
                 cmd.Parameters.AddWithValue("IMG", sp.IMG);
                 cmd.Parameters.AddWithValue("Gia", sp.Gia);
@@ -352,7 +352,7 @@ namespace DoAnFW.Models
                 return (cmd.ExecuteNonQuery());
             }
         }
-      
+
 
         public int DeleteHoaDon(string Id)
         {
@@ -721,24 +721,27 @@ namespace DoAnFW.Models
 
             using (MySqlConnection conn = GetConnection())
             {
-                conn.Open();
-                string sql = "select * from sanpham where MaSP="+id;
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                var reader = cmd.ExecuteReader();
-                reader.Read();
                 SanPham oj = new SanPham();
-                oj.MaSP = int.Parse(reader["MaSP"].ToString());
-                oj.TenSP = reader["TenSP"].ToString();
-                oj.MaNH = reader["MaNH"].ToString();
-                oj.MoTa = reader["MoTa"].ToString();
-                oj.IMG = reader["IMG"].ToString();
-                oj.Gia = double.Parse(reader["Gia"].ToString());
-                oj.TuongThich = reader["TuongThich"].ToString();
-                oj.Jack_cam = reader["Jack_cam"].ToString();
-                oj.KichThuoc = reader["KichThuoc"].ToString();
-                oj.CongNghe = reader["CongNghe"].ToString();
-                oj.TrongLuong = reader["TrongLuong"].ToString();
+                conn.Open();
+                string sql = "select * from sanpham where MaSP= @id limit 1 ";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("id", id);
+                var reader = cmd.ExecuteReader();
 
+                while (reader.Read())
+                {
+                    oj.MaSP = int.Parse(reader["MaSP"].ToString());
+                    oj.TenSP = reader["TenSP"].ToString();
+                    oj.MaNH = reader["MaNH"].ToString();
+                    oj.MoTa = reader["MoTa"].ToString();
+                    oj.IMG = reader["IMG"].ToString();
+                    oj.Gia = double.Parse(reader["Gia"].ToString());
+                    oj.TuongThich = reader["TuongThich"].ToString();
+                    oj.Jack_cam = reader["Jack_cam"].ToString();
+                    oj.KichThuoc = reader["KichThuoc"].ToString();
+                    oj.CongNghe = reader["CongNghe"].ToString();
+                    oj.TrongLuong = reader["TrongLuong"].ToString();
+                }
                 return oj;
             }
 
