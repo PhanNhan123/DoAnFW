@@ -334,30 +334,32 @@ namespace DoAnFW.Models
             }
         }
         // Hoa Don
-        public List<HoaDon> GetHoaDons()
+        public List<object> GetHoaDons()
         {
-            List<HoaDon> list = new List<HoaDon>();
+            List<object> list = new List<object>();
 
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from hoadon";
+                string str = "select * from hoadon, khachhang, nguoidung where hoadon.MaNL= nguoidung.Ma and hoadon.MaKH=khachhang.MaKH";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        list.Add(new HoaDon()
+                        var ob = new
                         {
                             MaHD = int.Parse(reader["MaHD"].ToString()),
-                            MaNL = int.Parse(reader["MaNL"].ToString()),
-                            MaKH = int.Parse(reader["MaKH"].ToString()),
+                            Ten = reader["Ten"].ToString(),
+                            TenKH = reader["TenKH"].ToString(),
+                            SDT = int.Parse(reader["SĐT"].ToString()),
                             NgayLap = Convert.ToDateTime(reader["NgayLap"].ToString()),
                             TongGia = float.Parse(reader["TongGia"].ToString()),
                             TrangThai = reader["TrangThai"].ToString()
-                        });
+                        };
+
+                        list.Add(ob);
                     }
-                    reader.Close();
                 }
 
                 conn.Close();
@@ -562,29 +564,31 @@ namespace DoAnFW.Models
             }
         }
         //CTHD
-        public List<CTHD> GetCTHDs()
+        public List<object> GetCTHDs()
         {
-            List<CTHD> list = new List<CTHD>();
+            List<object> list = new List<object>();
 
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from cthd";
+                string str = "select * from cthd,sanpham where cthd.MaSP= sanpham.MaSP";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        list.Add(new CTHD()
+                        var ob = new
                         {
-                            MaHD = int.Parse(reader["MaHD"].ToString()),
                             MaSP = int.Parse(reader["MaSP"].ToString()),
+                            TenSP = reader["TenSP"].ToString(),
+                            Gia = double.Parse(reader["Gia"].ToString()),
+                            MaHD = int.Parse(reader["MaHD"].ToString()),
                             SoLuong = int.Parse(reader["SoLuong"].ToString()),
-                            MaKM = int.Parse(reader["MaKM"].ToString()),
-                            HTTT = reader["HTTT"].ToString()
-                        });
+                        };
+
+                        list.Add(ob);
                     }
-                    reader.Close();
+
                 }
 
                 conn.Close();

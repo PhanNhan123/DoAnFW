@@ -1,10 +1,10 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Quản lí hóa đơn";
     Layout = "_Layout";
 
 }
-@model IEnumerable<DoAnFW.Models.HoaDon>
+@model List<Object>
 @{ int i = 1; }
 <h3> QUẢN LÍ HÓA ĐƠN</h3>
 <div class="table-responsive table-responsive-data2">
@@ -14,8 +14,9 @@
                 <th>STT</th>
                 <th>Ngày lập</th>
                 <th>Mã hóa đơn</th>
-                <th>Mã người dùng</th>
-                <th>Mã khách hàng</th>
+                <th>Tên người dùng</th>
+                <th>Tên khách hàng</th>
+                <th>Số điện thoại</th>
                 <th>Tổng giá</th>
                 <th>Trạng thái</th>
                 <th></th>
@@ -27,13 +28,15 @@
             <tbody>
                 <tr class="tr-shadow">
                     <td>@i</td>
-                    <td >@item.GetType().GetProperty("NgayLap").GetValue(item, null)
+                    <td>
+                        @item.GetType().GetProperty("NgayLap").GetValue(item, null)
                     </td>
                     <td>
                         <span class="block-email">@item.GetType().GetProperty("MaHD").GetValue(item, null)</span>
                     </td>
-                    <td class="desc">@item.GetType().GetProperty("MaNL").GetValue(item, null)</td>
-                    <td>@item.GetType().GetProperty("MaKH").GetValue(item, null)</td>
+                    <td class="desc">@item.GetType().GetProperty("Ten").GetValue(item, null)</td>
+                    <td>@item.GetType().GetProperty("TenKH").GetValue(item, null)</td>
+                    <td>@item.GetType().GetProperty("SDT").GetValue(item, null)</td>
                     <td>
                         <span class="status--process">@item.GetType().GetProperty("TongGia").GetValue(item, null)</span>
                     </td>
@@ -44,8 +47,14 @@
                                 <i class="zmdi zmdi-edit"></i>
                             </a>
                         </div>
+                        <div class="table-data-feature">
+                            <a asp-action="PrintHoaDon" asp-route-id="@item.GetType().GetProperty("MaHD").GetValue(item, null)" class="item" data-toggle="tooltip" data-placement="top" title="Print" id="@item.GetType().GetProperty("MaHD").GetValue(item, null)">
+                                <i class="fa fa-print"></i>
+                            </a>
+                        </div>
                     </td>
                 </tr>
+
             </tbody>
             i = i + 1;
         }
