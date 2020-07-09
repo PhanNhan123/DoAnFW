@@ -74,14 +74,24 @@ namespace DoAnFW.Areas.Admin.Controllers
         public IActionResult EditSanPham(int id)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
+            ViewBag.nhanhieu = context.GetNhanHieus();
             return View(context.GetSanPhamById(id));
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditSanPham(SanPham sp)
+        public IActionResult EditSanPham(SanPham sp, IFormFile IMG)
         {
+            string uniqueFileName = null;
+            var uploadFoder = Path.Combine(_hostingEnvironment.WebRootPath, "image");
+            if (IMG.FileName == null)
+            {
+                return BadRequest("Vui lòng chọn ảnh");
+            }
+            uniqueFileName = Guid.NewGuid().ToString() + "_" + IMG.FileName;
+            var filePath = Path.Combine(uploadFoder, uniqueFileName);
+            IMG.CopyTo(new FileStream(filePath, FileMode.Create));
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
-            var result = context.UpdateSanPham(sp);
+            var result = context.UpdateSanPham(sp, uniqueFileName);
             if (result > 0)
                 ViewData["thongbao"] = "Sửa thành công";
             else

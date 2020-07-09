@@ -209,35 +209,23 @@ namespace DoAnFW.Models
                 return (cmd.ExecuteNonQuery());
             }
         }
-        public int UpdateSanPham(SanPham sp)
+        public int UpdateSanPham(SanPham sp, string uniqueFileName)
         {
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                var str = "update sanpham " +
-                    "TenSP=@ten" +
-                    "MoTa=@mota" +
-                    "IMG =@IMG" +
-                    "Gia=@Gia" +
-                    "TuongThich =@TuongThich" +
-                    "Jack_cam=@Jack_cam" +
-                    "KichThuoc =@Kthuoc" +
-                    "CongNghe=@CN" +
-                    "TrongLuong =@TrongLuong" +
-                    "MaNH =@MaNH" +
-                    " where MaSP=@masp";
+                var  str = " update sanpham set TenSP=@ten, MoTa=@mota, IMG =@IMG, Gia=@Gia, TuongThich =@TuongThich, Jack_cam=@Jack_cam, KichThuoc =@Kthuoc and CongNghe=@CN, TrongLuong =@TrongLuong, MaNH =@MaNH where MaSP=" + sp.MaSP;
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("ten", sp.TenSP);
                 cmd.Parameters.AddWithValue("mota", sp.MoTa);
-                cmd.Parameters.AddWithValue("IMG", sp.IMG);
+                cmd.Parameters.AddWithValue("IMG", uniqueFileName);
                 cmd.Parameters.AddWithValue("Gia", sp.Gia);
                 cmd.Parameters.AddWithValue("TuongThich", sp.TuongThich);
-                cmd.Parameters.AddWithValue("Jack", sp.Jack_cam);
+                cmd.Parameters.AddWithValue("Jack_cam", sp.Jack_cam);
                 cmd.Parameters.AddWithValue("Kthuoc", sp.KichThuoc);
-                cmd.Parameters.AddWithValue("CN", sp.CongNghe);
+                cmd.Parameters.AddWithValue("CN", sp.CongNghe); 
                 cmd.Parameters.AddWithValue("TrongLuong", sp.TrongLuong);
                 cmd.Parameters.AddWithValue("MaNH", sp.MaNH);
-                cmd.Parameters.AddWithValue("masp", sp.MaSP);
                 return (cmd.ExecuteNonQuery());
             }
         }
@@ -278,6 +266,35 @@ namespace DoAnFW.Models
             }
         }
         //TonKho
+        public List<object> GetSPTonKho()
+        {
+            List<object> lt = new List<object>();
+            using (MySqlConnection conn = GetConnection())
+            {
+
+                conn.Open();
+                string str = "select * from tonkho, sanpham where tonkho.MaSP = sanpham.MaSP";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var ob = new
+                        {
+                            IMG = reader["IMG"].ToString(),
+                            MaSP = int.Parse(reader["MaSP"].ToString()),
+                            TenSP = reader["TenSP"].ToString(),
+                            MaKho = int.Parse(reader["MaKho"].ToString()),
+                            SoLuongTon = int.Parse(reader["SoLuongTon"].ToString()),
+                        };
+
+                        lt.Add(ob);
+                    }
+                }
+
+            }
+            return lt;
+        }
         public int InsertTonKho(int MaSP, int SoLuongTon)
         {
             using (MySqlConnection conn = GetConnection())
@@ -292,7 +309,18 @@ namespace DoAnFW.Models
 
             }
         }
-
+        public int UpdateTonKHo(TonKho tk)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = " update tonkho set MaSP=@masp, SoLuongTon=@slton where MaKho=" + tk.MaKho;
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("masp", tk.MaSP);
+                cmd.Parameters.AddWithValue("slton", tk.SoLuongTon);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
         public int DeleteSP_TonKho(string MaSP)
         {
             using (MySqlConnection conn = GetConnection())
@@ -785,6 +813,30 @@ namespace DoAnFW.Models
                     oj.TrongLuong = reader["TrongLuong"].ToString();
                 }
                 return oj;
+            }
+
+        }
+
+        public TonKho GetTonKhoID(int id)
+        {
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                TonKho tk = new TonKho();
+                conn.Open();
+                string sql = "select * from tonkho where MaSP= @id limit 1 ";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("id", id);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    tk.MaSP = int.Parse(reader["MaSP"].ToString());
+                    tk.SoLuongTon = int.Parse(reader["SoLuongTon"].ToString());
+                    tk.MaKho = int.Parse(reader["MaKho"].ToString());
+                    
+                }
+                return tk;
             }
 
         }

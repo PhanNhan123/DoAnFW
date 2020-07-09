@@ -1,0 +1,66 @@
+﻿@model DoAnFW.Models.TonKho
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Cập nhật số lượng tồn kho";
+    Layout = "_Layout";
+}
+
+
+
+<div class="card-header">
+    <i class="fab fa-shopify"></i>&ensp;<strong>Cập nhật số lượng tồn kho</strong>
+</div>
+<div class="card-body card-block">
+
+
+    <form asp-action="EditTonKho" asp-controller="TonKho" method="POST" enctype="multipart/form-data" class="form-horizontal">
+
+
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label class=" form-control-label">Mã sản phẩm</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <p class="form-control-static"><i>@Model.MaSP</i></p>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label class=" form-control-label">Tên</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <p class="form-control-static"><i>@ViewBag.sanpham.TenSP</i></p>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label class=" form-control-label">Ảnh</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <p class="form-control-static"><img src="/image/@ViewBag.sanpham.IMG" /></p>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Số lượng</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <input asp-for="SoLuongTon" type="text" value="@Model.SoLuongTon" class="form-control">
+                <input asp-for="MaSP" type="hidden" value="@Model.MaSP" class="form-control">
+                <input asp-for="MaKho" type="hidden" value="@Model.MaKho" class="form-control">
+
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-sm">
+                <i class="fa fa-dot-circle-o"></i> Lưu
+            </button>
+            <button type="reset" class="btn btn-danger btn-sm">
+                <i class="fa fa-ban"></i> Thoát
+            </button>
+        </div>
+    </form>
+</div>
+
+
