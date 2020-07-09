@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "UpdateKhachHang";
+}
+
+<h1>Kết quả</h1>
+<br />
+@{
+    if (ViewBag.flat > 1)
+    {
+        <div class="alert alert-success" role="alert">
+            Cập nhật thông tin khách hàng thành công
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            Đã xảy ra lỗi !
+        </div>
+    }
+}

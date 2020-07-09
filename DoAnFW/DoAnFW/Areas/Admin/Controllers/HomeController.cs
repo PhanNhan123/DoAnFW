@@ -62,9 +62,8 @@ namespace DoAnFW.Areas.Admin.Controllers
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
             var result = context.GetBarChart();
-            List<object> listData = new List<object>();
-            listData = result;
-            return View(listData);
+
+            return Json(result);
         }
 
 

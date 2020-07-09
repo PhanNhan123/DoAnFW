@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "InsertKhachHang";
+    Layout = "_Layout";
+}
+
+<h1>Kết quả</h1>
+<br />
+@{
+    if (ViewBag.flat > 0)
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewData["result"]
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewData["result"]
+        </div>
+    }
+}

@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using Org.BouncyCastle.Asn1.Cms;
 using Org.BouncyCastle.Asn1.Cmp;
+using System.Linq;
 
 namespace DoAnFW.Models
 {
@@ -124,14 +125,33 @@ namespace DoAnFW.Models
             }
             return list;
         }
+        public KhachHang GetKhachHangById(int id)
+        {
+            KhachHang a = new KhachHang();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "select * from khachhang where MaKH=@ma ";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("ma", id);
+                var result = cmd.ExecuteReader();
+                while (result.Read())
+                {
+                    a.MaKH = id;
+                    a.TenKH = result["TenKH"].ToString();
+                    a.SDT = result["SĐT"].ToString();
+                    a.DiaChi = result["DiaChi"].ToString();
+                }
+            }
+            return a;
+        }
         public int InsertKhachHang(KhachHang kh)
         {
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                var str = "insert into khachhang values(@ma, @ten,@SDT,@diachi)";
+                var str = "insert into khachhang(TenKH,SĐT,DiaChi) values(@ten,@SDT,@diachi)";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
-                cmd.Parameters.AddWithValue("ma", kh.MaKH);
                 cmd.Parameters.AddWithValue("ten", kh.TenKH);
                 cmd.Parameters.AddWithValue("SDT", kh.SDT);
                 cmd.Parameters.AddWithValue("diachi", kh.DiaChi);
@@ -649,15 +669,37 @@ namespace DoAnFW.Models
         //}
         public List<object> GetBarChart()
         {
-            List<object> list = new List<object>();
-            string sql = "";
+            List<ChartViewModel> list = new List<ChartViewModel>();
+            //if (year != 0)
+            //{
+            //    year = DateTime.Now.Year;
+            //}
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
+                string sql = "SELECT month(NgayLap) as Month,sum(TongGia)as Sum " +
+                "from hoadon " +
+                "GROUP by month(NgayLap) ";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
+                //cmd.Parameters.AddWithValue("year", year);
+                var result = cmd.ExecuteReader();
+                while (result.Read())
+                {
+                    ChartViewModel chartViewModel = new ChartViewModel();
+                    chartViewModel.Month = Convert.ToInt32(result["Month"]);
+                    chartViewModel.Sum = Convert.ToDouble(result["Sum"]);
+                    list.Add(chartViewModel);
+                }
+
 
             }
-            return list;
+            List<object> chartData = new List<object>();
+
+            var lable = list.Select(p => p.Month).ToArray();
+            var value = list.Select(p => p.Sum).ToArray();
+            chartData.Add(lable);
+            chartData.Add(value);
+            return chartData;
         }
 
 

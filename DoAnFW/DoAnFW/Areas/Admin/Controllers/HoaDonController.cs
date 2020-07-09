@@ -17,7 +17,6 @@ namespace DoAnFW.Areas.Admin.Controllers
         }
         public IActionResult InsertHoaDon()
         {
-
             return View();
         }
         [HttpPost]
@@ -32,7 +31,7 @@ namespace DoAnFW.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost]
-        public  IActionResult DeleteHoaDon(string Id)
+        public IActionResult DeleteHoaDon(string Id)
         {
 
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;

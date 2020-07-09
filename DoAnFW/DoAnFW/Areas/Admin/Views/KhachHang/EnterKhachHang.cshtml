@@ -1,0 +1,62 @@
+﻿@using DoAnFW.Models;
+@model KhachHang;
+@{
+    ViewData["Title"] = "Nhập thông tin khách hàng";
+    Layout = "_Layout";
+}
+<div class="card-header">
+    <i class="fab fa-shopify"></i>&ensp;<strong>Thêm Khách Hàng</strong>
+</div>
+<div class="card-body card-block">
+
+
+    <form action="InsertKhachHang" method="POST" enctype="multipart/form-data" class="form-horizontal">
+
+
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label class=" form-control-label">Mã sản phẩm</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <p class="form-control-static">//<i>Mã sản phẩm sẽ tự động tạo</i></p>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Tên khách hàng</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <input type="text" id="TenKH" name="TenKH" placeholder="Nguyễn Văn A" class="form-control">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Số điện thoại</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <input type="text" id="SDT" name="SDT" placeholder="0909 *** ***" class="form-control">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Địa chỉ</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <input type="text" id="DiaChi" name="DiaChi" placeholder="Số 1 F.Đa Kao Quận 1 TPHCM" class="form-control">
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-sm">
+                <i class="fa fa-dot-circle-o"></i> Thêm Khách Hàng
+            </button>
+            <button class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Index", "KhachHang")'">
+                <i class="fa fa-ban"></i>Thoát
+            </button>
+        </div>
+    </form>
+</div>
+
+
+

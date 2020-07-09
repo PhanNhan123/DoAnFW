@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DoAnFW.Models.KhachHang>
+@{
+    ViewData["Title"] = "Khách hàng";
+    Layout = "_Layout";
+}
+@{int i = 1;}
+<h1>Quản lý thông tin khách hàng</h1>
+<br />
+<div class="table-responsive table-responsive-data2">
+    <input type="button" class="btn btn-primary" value="Thêm khách hàng" onclick="location.href='@Url.Action("EnterKhachHang", "KhachHang")'" />
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã khách hàng</th>
+                <th>Tên khách hàng</th>
+                <th>Số điện thoại</th>
+                <th>Địa chỉ</th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (DoAnFW.Models.KhachHang a in Model)
+        {
+            <tbody>
+
+                <tr class="table-info">
+                    <td>@i</td>
+                    <td>
+                        <span class="block-email">@a.MaKH </span>
+                    </td>
+                    <td class="desc">@a.TenKH</td>
+                    <td> @a.SDT</td>
+                    <td>
+                        <span class="status--process"> @a.DiaChi</span>
+                    </td>
+                    <td>
+                        <form>
+                            <div class="table-data-feature">
+                                <a asp-action="EditKhachHang" href="@Url.Action("EditKhachHang", "KhachHang",new { id=a.MaKH})" class="item" data-toggle="tooltip" data-placement="top" title="Edit" id="@a.MaKH">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </a>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+
+            </tbody>
+            i = i + 1;
+        };
+    </table>
+
+</div>
+

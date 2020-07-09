@@ -636,3 +636,8 @@ C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\bin\Debug\netcoreapp3.1\Mi
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\DoAnFW.csproj.CoreCompileInputs.cache
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\DoAnFW.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\DoAnFW.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\KhachHang\Index.cshtml.g.cs
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\KhachHang\EnterKhachHang.cshtml.g.cs
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\KhachHang\InsertKhachHang.cshtml.g.cs
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\KhachHang\EditKhachHang.cshtml.g.cs
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\KhachHang\UpdateKhachHang.cshtml.g.cs
