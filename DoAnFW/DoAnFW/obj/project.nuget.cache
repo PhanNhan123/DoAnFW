@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rGLa/40hyQFh82AR0dqC5kHBx2B8AhRstQZ5uqhqVYGEglASSt5Ie+SZ3v0Va/cOVyOfC97uOyqZ3FtkZU7OAw==",
+  "dgSpecHash": "jo/hC6KCALFrXmWuOo5rckkoaTbQWSASNKgUD+i+lXYBl8yW0Qf9iyPIpMbWXtknTVbNh9mlxR/eZWQ9KlVxjA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dell\\Desktop\\New folder\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj",
   "expectedPackageFiles": [
@@ -74,7 +74,7 @@
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.win32.systemevents\\4.6.0\\microsoft.win32.systemevents.4.6.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\mysql.data\\8.0.20\\mysql.data.8.0.20.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\Dell\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\nuget.frameworks\\4.7.0\\nuget.frameworks.4.7.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

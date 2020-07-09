@@ -1,8 +1,294 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Home Page";
 }
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/Home.css">
+</head>
+@{
+    int i = 1;
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+}
+<div class="container">
+    <div class="content_1">
+        <div class="column_1_1">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+
+
+                <!-- Wrapper for slides -->
+
+
+                <div class="carousel-inner">
+                    @foreach (var product in ViewBag.products)
+                    {
+                        if (i == 1)
+                        {
+                            <div class="item active" asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@product.MaSP">
+                                <img src="@product.IMG" alt="Los Angeles" style="width:100%; height:100%;">
+                                <div class="carousel-caption">
+                                    <h3>@product.TenSP</h3>
+
+
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="item">
+                                <img src="@product.IMG" alt="Los Angeles" style="width:100%; height:100%;">
+                                <div class="carousel-caption">
+                                    <h3>@product.TenSP</h3>
+
+
+                                </div>
+                            </div>
+                        }
+                        i = i + 1;
+                    }
+
+
+
+
+
+
+
+
+
+                    <!--
+                    <div class="item active">
+                        <img src="/image/loa-jbl-charge-4-black.jpg" alt="Los Angeles" style="width:100%; height:100%;">
+                        <div class="carousel-caption">
+                            <h3>Los Angeles</h3>
+                            <p>LA is always so much fun!</p>
+                        </div>
+                    </div>
+
+
+                    <div class="item">
+                        <img src="/image/loa-jbl-charge-4-black.jpg" alt="Chicago" style="width:100%;height:100%;">
+                        <div class="carousel-caption">
+                            <h3>Chicago</h3>
+                            <p>Thank you, Chicago!</p>
+                        </div>
+                    </div>
+
+
+                    <div class="item">
+                        <img src="/image/loa-jbl-charge-4-black.jpg" alt="New York" style="width:100%;height:100%;">
+                        <div class="carousel-caption">
+                            <h3>New York</h3>
+                            <p>We love the Big Apple!</p>
+                        </div>
+                    </div>
+                     -->
+                </div>
+
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <!-- <div class="column_1_2">
+            <p>Nhan phan</p>
+        </div>
+           -->
+    </div>
+    <div class="content_2">
+        <div class="column_2_1">
+            <img src="https://cdn.tgdd.vn/Products/Images/54/217951/tai-nghe-bluetooth-mozard-z702-xanh-1-600x600-1-600x600.jpg" />
+        </div>
+        <div class="column_2_2">
+            <span style="color: red; ">New</span>
+
+
+            <h2>
+
+
+                Tai nghe Bluetooth Mozard Z702 Xanh
+            </h2>
+            <p class="link-buy">
+                <a asp-controller="Cart" asp-action="Buy" asp-route-MaSP="110001">
+                    Buy
+                </a>
+            </p>
+            <a style="font-size:21px;" asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="110001">Learn more ></a>
+        </div>
+
+
+    </div>
+    <div class="content_2a">
+
+
+        <div class="column_2_2a">
+            <span style="color: red; ">New</span>
+
+
+            <h2>
+
+
+                Tai nghe chụp tai Gaming MozardX DS904 7.1 Đen
+            </h2>
+            <p class="link-buy">
+                <a asp-controller="Cart" asp-action="Buy" asp-route-MaSP="110002">
+                    Buy
+                </a>
+            </p>
+            <a style="font-size:21px;" asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="110002">Learn more ></a>
+        </div>
+        <div class="column_2_1a">
+            <img src="https://cdn.tgdd.vn/Products/Images/54/214561/tai-nghe-chup-tai-gaming-mozardx-ds904-71-den-ava-600x600.jpg" />
+        </div>
+    </div>
+    <div class="content_3">
+        <div class="column_3_1">
+            <div class="row_3_1_1">
+                <div class="js-product-title">
+                    <div class="product-title">
+                        <div class="img-product">
+                            <img src="/image/Loa-sony-srs-xb12-extra-bass.jpg" style="width:100%;height:100%;" />
+                        </div>
+                        <div class="product-content">
+                            <p>Loa JBL</p>
+                        </div>
+                        <div class="btn-buynow">
+                            <p class="link-buy">
+                                <a href="">
+                                    Mua ngay
+                                </a>
+                            </p>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="row_3_1_2">
+                <div class="js-product-title">
+                    <div class="product-title">
+                        <div class="img-product">
+                            <img src="/image/Loa-sony-srs-xb12-extra-bass.jpg" style="width:100%;height:100%;" />
+                        </div>
+                        <div class="product-content">
+                            <p>Loa JBL</p>
+                        </div>
+                        <div class="btn-buynow">
+                            <p class="link-buy">
+                                <a href="">
+                                    Mua ngay
+                                </a>
+                            </p>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="column_3_2">
+            <div class="js-product-title-1">
+                <div class="product-title-1">
+                    <div class="img-product-1">
+                        <img class="img-column-2" src="/image/Loa-sony-srs-xb12-extra-bass.jpg" style="width:100%;height:100%;" />
+                    </div>
+                    <div class="product-content-1">
+                        <p>Loa JBL</p>
+                    </div>
+                    <div class="btn-buynow-1">
+                        <p class="link-buy-1">
+                            <a href="">
+                                Mua ngay
+                            </a>
+                        </p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column_3_3">
+            <div class="row_3_3_1">
+                <div class="js-product-title">
+                    <div class="product-title">
+                        <div class="img-product">
+                            <img src="/image/Loa-sony-srs-xb12-extra-bass.jpg" style="width:100%;height:100%;" />
+                        </div>
+                        <div class="product-content">
+                            <p>Loa JBL</p>
+                        </div>
+                        <div class="btn-buynow">
+                            <p class="link-buy">
+                                <a href="">
+                                    Mua ngay
+                                </a>
+                            </p>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row_3_3_2">
+                <div class="js-product-title">
+                    <div class="product-title">
+                        <div class="img-product">
+                            <img src="/image/Loa-sony-srs-xb12-extra-bass.jpg" style="width:100%;height:100%;" />
+                        </div>
+                        <div class="product-content">
+                            <p>Loa JBL</p>
+                        </div>
+                        <div class="btn-buynow">
+                            <p class="link-buy">
+                                <a href="">
+                                    Mua ngay
+                                </a>
+                            </p>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,104 +1,77 @@
-﻿@{
-    ViewData["Title"] = "Thông tin sản phẩm";
-
-}
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <head>
-    <link rel="stylesheet" href="~/css/Product.css" />
+    <link rel="stylesheet" href="~/css/List.css" />
+    <link rel="stylesheet" href="~/css/product_list.css" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
 </head>
 <div class="main">
-    <div class="namephone">
-        <h1 id="name">
-            Tai nghe iphone 5
-        </h1>
+    <div class=" qc">
+        <img src="/image/qc.jpg">
     </div>
-    <hr>
-    <div class="rowdetail">
-        <div class="img-phone">
-            <img class="img" src="/image/tai-nghe-iphone-5.jpg">
-            <div class="quantity">
-                <label> Số lượng:</label>
-                <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
-            </div>
+    <div class="dropdown">
+        <button class="dropbtn">Loại phụ kiện<i class="fas fa-chevron-down"></i></button>
+        <div class="dropdown-content">
+            <a href="#">Tai nghe</a>
+            <a href="#">Cáp sạc</a>
+            <a href="#">Bao da, ốp</a>
         </div>
-        <div class="price">
-            <div class="cost">
-                <h1 style="color:brown" class="cost-1" id="gia">150.000đ </h1>
-                <div class="pg">
-                    <div class="cs">
-                        <a class="cost-2"> 120.000đ</a>
-                    </div>
-                    <div class="giamgia">
-                        <b>Giảm giá 8%</b>
+    </div>
+    <br>
+    <div class="list">
+        <div class="row">
+            @foreach (var product in ViewBag.products)
+            {
+                <!--
+                <div class="product">
+                    <div class="img"><img style="width:100%;height:100%" src="@product.IMG " /></div>
+                    <div class="content">
+
+
+                        <a href="/product"><label><b>@product.TenSP</b></label></a>
+
+
+                        <p class="gia" style="color: red;"><b>@product.Gia</b> </p>
+
+
+                        <div class="button">
+                            <a asp-controller="Cart" asp-action="Buy" asp-route-MaSP="@product.MaSP">Mua Ngay</a>
+                            <a asp-controller="ProductDetail" asp-action="Detail" asp-route-MaSP="@product.MaSP">Xem chi tiết</a>
+                        </div>
+
+
                     </div>
                 </div>
-            </div>
-            <br />
-            <div class="description">
-                <p><b>Mô tả sản phẩm</b></p>
-                <p>
-                    Tai nghe Iphone 5/5s/5c là phiên bản tốt nhất trên thị trường tai nghe Earpods hiện nay.
-                    Tai nghe được thiết kế khá ấn tượng, chất lượng âm thanh tốt, Jack cắm chuẩn 3.5 mm bạn có thể sử dụng loại tai nghe này cho các dòng máy HTC, Sony, Samsung, LG, Nokia...
-                    Nghe hay hơn rất nhiều so với tai nghe zin của những hãng này
-                </p>
-            </div>
-            <div class="button">
-                <a id="buy" href="">Mua ngay</a>
-                <a id="add" href="">Thêm vào giỏ hàng</a>
-            </div>
-        </div>
-        <div class="table">
-            <h4> Chi tiết sản phẩm</h4>
-            <table>
-                <tr>
-                    <td id="a">
-                        Tương thích:
-                    </td>
-                    <td>
-                        Windows
-                    </td>
-                </tr>
-                <tr>
-                    <td id="a">
-                        Jack cắm:
-                    </td>
-                    <td>
-                        USB
-                    </td>
-                </tr>
-                <tr>
-                    <td id="a">
-                        Công nghệ:
-                    </td>
-                    <td>
-                        Âm thanh vòm 7.1
-                    </td>
-                </tr>
-                <tr>
-                    <td id="a">
-                        Kích thước:
-                    </td>
-                    <td>
-                        2 m
-                    </td>
-                </tr>
-                <tr>
-                    <td id="a">
-                        Trọng lượng:
-                    </td>
-                    <td>
-                        520g (kèm hộp)
-                    </td>
-                </tr>
-                <tr>
-                    <td id="a">
-                        Thương hiệu của:
-                    </td>
-                    <td>
-                        Trung Quốc
-                    </td>
-                </tr>
-            </table>
+                -->
+                <div class="col-md-3 product-grid">
+                    <div class="image">
+                        <a asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@product.MaSP">
+                            <img src="~/image/@product.IMG" class="w-100">
+                            <div class="overlay">
+                                <div class="detail">View Details</div>
+                            </div>
+                        </a>
+                    </div>
+                    <h5 class="text-center">@product.TenSP</h5>
+                    <h5 class="text-center">Price: @product.Gia</h5>
+                    <a class="btn buy" asp-controller="Cart" asp-action="Buy" asp-route-MaSP="@product.MaSP">Mua Ngay</a>
+                </div>
+
+
+
+            }
+
+
+
         </div>
     </div>
+    <br />
+
 
 </div>
+
+
+
+
+
+

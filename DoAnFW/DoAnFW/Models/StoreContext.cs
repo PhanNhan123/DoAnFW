@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Org.BouncyCastle.Asn1.Cms;
 using Org.BouncyCastle.Asn1.Cmp;
 using System.Linq;
+using Microsoft.AspNetCore.Routing.Constraints;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace DoAnFW.Models
 {
@@ -614,6 +616,116 @@ namespace DoAnFW.Models
                 return (cmd.ExecuteNonQuery());
             }
         }
+
+
+
+        public List<SanPham> findAll()
+        {
+            List<SanPham> list = new List<SanPham>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("select * from sanpham", conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new SanPham()
+                        {
+                            MaSP = int.Parse(reader["MaSP"].ToString()),
+                            TenSP = reader["TenSP"].ToString(),
+                            MoTa = reader["Mota"].ToString(),
+                            IMG = reader["IMG"].ToString(),
+                            MaNH = reader["MaNH"].ToString(),
+                            Gia = double.Parse(reader["Gia"].ToString()),
+                            TuongThich = reader["TuongThich"].ToString(),
+                            Jack_cam = reader["Jack_cam"].ToString(),
+                            KichThuoc = reader["KichThuoc"].ToString(),
+                            CongNghe = reader["CongNghe"].ToString(),
+                            TrongLuong = reader["TrongLuong"].ToString()
+                        });
+                    }
+                }
+
+
+            }
+            return list;
+        }
+        public SanPham find(int MaSP)
+        {
+
+            SanPham sp = new SanPham();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "select * from sanpham where masp=" + MaSP;
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("ma", MaSP);
+                using (var reader = cmd.ExecuteReader())
+                {
+
+
+                    reader.Read();
+
+                    sp.TenSP = reader["TenSP"].ToString();
+                    sp.MoTa = reader["Mota"].ToString();
+                    sp.MaNH = reader["MaNH"].ToString();
+                    sp.IMG = reader["IMG"].ToString();
+                    sp.Gia = double.Parse(reader["Gia"].ToString());
+                    sp.TuongThich = reader["TuongThich"].ToString();
+                    sp.Jack_cam = reader["Jack_cam"].ToString();
+                    sp.KichThuoc = reader["KichThuoc"].ToString();
+                    sp.CongNghe = reader["CongNghe"].ToString();
+                    sp.TrongLuong = reader["TrongLuong"].ToString();
+                    sp.MaSP = int.Parse(reader["MaSP"].ToString());
+                }
+            }
+            return (sp);
+        }
+
+
+        public List<SanPham> load_carousel()
+        {
+            List<SanPham> list = new List<SanPham>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT  * FROM `sanpham` ORDER BY MaSP DESC LIMIT 3 ", conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new SanPham()
+                        {
+                            MaSP = int.Parse(reader["MaSP"].ToString()),
+                            TenSP = reader["TenSP"].ToString(),
+                            MoTa = reader["Mota"].ToString(),
+                            IMG = reader["IMG"].ToString(),
+                            MaNH = reader["MaNH"].ToString(),
+                            Gia = double.Parse(reader["Gia"].ToString()),
+                            TuongThich = reader["TuongThich"].ToString(),
+                            Jack_cam = reader["Jack_cam"].ToString(),
+                            KichThuoc = reader["KichThuoc"].ToString(),
+                            CongNghe = reader["CongNghe"].ToString(),
+                            TrongLuong = reader["TrongLuong"].ToString()
+                        });
+                    }
+                }
+
+
+            }
+            return list;
+        }
+
+
+
+
+
+
+
+
+
+
         //----------------------Admin Area----------------------
 
         //Login
@@ -667,18 +779,72 @@ namespace DoAnFW.Models
 
         //    }
         //}
-        public List<object> GetBarChart()
+        public double Total()
         {
-            List<ChartViewModel> list = new List<ChartViewModel>();
-            //if (year != 0)
-            //{
-            //    year = DateTime.Now.Year;
-            //}
+            double totalCost = 0;
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
+                string sql = "select sum(TongGia) from HoaDon where TrangThai='đã thanh toán'";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                totalCost = Convert.ToDouble(cmd.ExecuteScalar());
+            }
+            return totalCost;
+        }
+
+        public int Num_Customer()
+        {
+            int count = 0;
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "select count(MaKH) from khachhang ";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                count = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            return count;
+        }
+        public double ExpectedCost()
+        {
+            double total = 0;
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "select sum(TongGia) from HoaDon";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                total = Convert.ToDouble(cmd.ExecuteScalar());
+            }
+            return total;
+        }
+        public int TotalSaleItem(int month, int year)
+        {
+            int count = 0;
+            using (MySqlConnection conn = GetConnection())
+            {
+                int n = month;
+                conn.Open();
+                string sql = "select sum(SoLuong) " +
+                    "from hoadon, cthd " +
+                    "where hoadon.MaHD =cthd.MaHD ";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("month", month);
+                cmd.Parameters.AddWithValue("year", year);
+                object temp = cmd.ExecuteScalar();
+                count = Convert.ToInt32(temp);
+            }
+            return count;
+        }
+
+        public List<object> GetBarChart()
+        {
+            List<ChartViewModel> list = new List<ChartViewModel>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                DateTime dt = DateTime.Now;
+                int year = dt.Year;
                 string sql = "SELECT month(NgayLap) as Month,sum(TongGia)as Sum " +
-                "from hoadon " +
+                "from hoadon " + " where year(NgayLap)= '" + year + "' " +
                 "GROUP by month(NgayLap) ";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 //cmd.Parameters.AddWithValue("year", year);
@@ -690,12 +856,39 @@ namespace DoAnFW.Models
                     chartViewModel.Sum = Convert.ToDouble(result["Sum"]);
                     list.Add(chartViewModel);
                 }
-
-
             }
             List<object> chartData = new List<object>();
-
             var lable = list.Select(p => p.Month).ToArray();
+            var value = list.Select(p => p.Sum).ToArray();
+            chartData.Add(lable);
+            chartData.Add(value);
+            return chartData;
+        }
+        public List<object> GetLineChart()
+        {
+            List<ChartViewModel> list = new List<ChartViewModel>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                DateTime dt = DateTime.Now;
+                int month = dt.Month;
+                int year = dt.Year;
+                string sql = "SELECT day(NgayLap) as Day,sum(TongGia)as Sum " +
+                "from hoadon " + " where month(NgayLap)= '" + month + "' and year(NgayLap)= '" + year + "' " +
+                "GROUP by day(NgayLap)";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                //cmd.Parameters.AddWithValue("year", year);
+                var result = cmd.ExecuteReader();
+                while (result.Read())
+                {
+                    ChartViewModel chartViewModel = new ChartViewModel();
+                    chartViewModel.Day = Convert.ToInt32(result["Day"]);
+                    chartViewModel.Sum = Convert.ToDouble(result["Sum"]);
+                    list.Add(chartViewModel);
+                }
+            }
+            List<object> chartData = new List<object>();
+            var lable = list.Select(p => p.Day).ToArray();
             var value = list.Select(p => p.Sum).ToArray();
             chartData.Add(lable);
             chartData.Add(value);

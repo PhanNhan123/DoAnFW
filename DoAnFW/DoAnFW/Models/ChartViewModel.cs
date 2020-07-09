@@ -7,6 +7,7 @@ namespace DoAnFW.Models
 {
     public class ChartViewModel
     {
+        public int Day { get; set; }
         public int Month { get; set; }
         public double Sum { get; set; }
     }

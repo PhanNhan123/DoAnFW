@@ -192,91 +192,34 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts
+                            <a href="@Url.Action("Index", "SanPham")">
+                                <i class="fa fa-headphones" aria-hidden="true"></i>Sản Phẩm
                             </a>
                         </li>
                         <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables
+                            <a href="@Url.Action("Index", "HoaDon")">
+                                <i class="far fa-file"></i>Hóa đơn
                             </a>
                         </li>
                         <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms
+                            <a href="@Url.Action("Index", "KhachHang")">
+                                <i class="fa fa-users" aria-hidden="true"></i>Khách Hàng
                             </a>
                         </li>
                         <li>
                             <a href="calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendar
+                                <i class="fas fa-warehouse"></i>Kho Hàng
                             </a>
                         </li>
                         <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps
+                            <a href="@Url.Action("Index", "Statistics")">
+                                <i class="fa fa-line-chart" aria-hidden="true"></i>Thống Kê Doanh Thu
                             </a>
                         </li>
                         <li>
                             <a href="@Url.Action("Logout","Home")">
-                                <i class="fas fa-sign-out-alt" aria-hidden="true"></i>Log Out
+                                <i class="fas fa-sign-out-alt" aria-hidden="true"></i>Đăng Xuất
                             </a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages
-                            </a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Forget Password</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements
-                            </a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="button.html">Button</a>
-                                </li>
-                                <li>
-                                    <a href="badge.html">Badges</a>
-                                </li>
-                                <li>
-                                    <a href="tab.html">Tabs</a>
-                                </li>
-                                <li>
-                                    <a href="card.html">Cards</a>
-                                </li>
-                                <li>
-                                    <a href="alert.html">Alerts</a>
-                                </li>
-                                <li>
-                                    <a href="progress-bar.html">Progress Bars</a>
-                                </li>
-                                <li>
-                                    <a href="modal.html">Modals</a>
-                                </li>
-                                <li>
-                                    <a href="switch.html">Switchs</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grids</a>
-                                </li>
-                                <li>
-                                    <a href="fontawesome.html">Fontawesome Icon</a>
-                                </li>
-                                <li>
-                                    <a href="typo.html">Typography</a>
-                                </li>
-
-                            </ul>
                         </li>
                     </ul>
                 </nav>
@@ -297,7 +240,7 @@
                                         <i class="zmdi zmdi-search"></i>
                                     </button>
                                 </form>*@
-                            <div class="header-button d-flex">
+                            <div class="header-button ml-auto">
                                 @*<div class="noti-wrap">
                                         <div class="noti__item js-item-menu">
                                             <i class="zmdi zmdi-comment-more"></i>
@@ -424,7 +367,7 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="~/Admin/images/icon/avatar-01.jpg" alt="@Context.Session.GetString("Name")" />
+                                                        <img src="~/Admin/images/icon/avatar-01.jpg" width="100" height="100" alt="@Context.Session.GetString("Name")" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -437,23 +380,19 @@
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Account
+                                                        <i class="zmdi zmdi-account"></i>Tên : @Context.Session.GetString("Name")
                                                     </a>
                                                 </div>
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting
+                                                        <i class="zmdi zmdi-settings"></i>Tài Khoản : @Context.Session.GetString("Username")
                                                     </a>
                                                 </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing
-                                                    </a>
-                                                </div>
+
                                             </div>
                                             <div class="account-dropdown__footer">
                                                 <a href="@Url.Action("Logout","Home")">
-                                                    <i class="zmdi zmdi-power"></i>Logout
+                                                    <i class="zmdi zmdi-power"></i>Đăng xuất
                                                 </a>
                                             </div>
                                         </div>
@@ -503,6 +442,7 @@
     <script src="~/Admin/js/main.js"></script>
     <!--Bar Chart-->
     <script>
+        //Doanh thu theo tháng
         $(document).ready(function () {
             $.ajax({
                 type: "GET",
@@ -519,11 +459,11 @@
                 labels: data_x,
                 datasets: [
                     {
-                        label: "My Second dataset",
+                        label: "Doanh thu tháng ",
                         data: data_y,
-                        borderColor: "rgba(0,0,0,0.09)",
+                        borderColor: "rgba(0, 123, 255, 0.9)",
                         borderWidth: "0",
-                        backgroundColor: "rgba(0,0,0,0.07)",
+                        backgroundColor: "rgba(0, 123, 255, 0.5)",
                         fontFamily: "Poppins"
                     }
                 ]
@@ -563,6 +503,104 @@
 
         }
     </script>
+
+    <script>
+        //Doanh thu theo ngày
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/Home/GetLineChart",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: data_arriv,
+            })
+        });
+        function data_arriv(data) {
+            var data_x = data[0];
+            var data_y = data[1];
+            var graph_data = {
+                labels: data_x,
+                datasets: [
+                    {
+                        label: "Doanh thu ngày",
+                        data: data_y,
+                        borderColor: "rgba(0, 123, 255, 0.9)",
+                        borderWidth: "0",
+                        backgroundColor: "rgba(0, 123, 255, 0.5)",
+                        fontFamily: "Poppins"
+                    }
+                ]
+            }
+            var ctx = document.getElementById("team-chart");
+            if (ctx) {
+                ctx.height = 200;
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: graph_data,
+                    options: {
+                        responsive: true,
+                        tooltips: {
+                            mode: 'index',
+                            titleFontSize: 12,
+                            titleFontColor: '#000',
+                            bodyFontColor: '#000',
+                            backgroundColor: '#fff',
+                            titleFontFamily: 'Poppins',
+                            bodyFontFamily: 'Poppins',
+                            cornerRadius: 3,
+                            intersect: false,
+                        },
+                        legend: {
+                            display: false,
+                            position: 'top',
+                            labels: {
+                                usePointStyle: true,
+                                fontFamily: 'Poppins',
+                            },
+
+
+                        },
+                        scales: {
+                            xAxes: [{
+                                display: true,
+                                gridLines: {
+                                    display: false,
+                                    drawBorder: false
+                                },
+                                scaleLabel: {
+                                    display: false,
+                                    labelString: 'Month'
+                                },
+                                ticks: {
+                                    fontFamily: "Poppins"
+                                }
+                            }],
+                            yAxes: [{
+                                display: true,
+                                gridLines: {
+                                    display: false,
+                                    drawBorder: false
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Value',
+                                    fontFamily: "Poppins"
+                                },
+                                ticks: {
+                                    fontFamily: "Poppins"
+                                }
+                            }]
+                        },
+                        title: {
+                            display: false,
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+
+
 </body>
 
 </html>

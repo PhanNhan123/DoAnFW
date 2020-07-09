@@ -16,9 +16,16 @@ namespace DoAnFW.Areas.Admin.Controllers
         //HttpContext.Session.SetString("Tokens".result.ResultObject)
         public IActionResult Index()
         {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
+
             var uId = HttpContext.Session.GetString("idUser");
             if (uId != null)
             {
+                DateTime dt = DateTime.Now;
+                ViewBag.TotalCost = String.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0,0}", context.Total());
+                ViewBag.ExpectedCost = String.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0,0}", context.ExpectedCost());
+                ViewBag.NumberofCustomer = context.Num_Customer();
+                ViewBag.TotalIteam = context.TotalSaleItem(dt.Month, dt.Year);
                 ViewData["Name"] = HttpContext.Session.GetString("Name");
                 ViewData["Username"] = HttpContext.Session.GetString("Username");
                 return View();
@@ -65,7 +72,13 @@ namespace DoAnFW.Areas.Admin.Controllers
 
             return Json(result);
         }
+        public IActionResult GetLineChart()
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
+            var result = context.GetLineChart();
 
+            return Json(result);
+        }
 
         //Logout
         public ActionResult Logout()
