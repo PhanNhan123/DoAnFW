@@ -28,7 +28,7 @@ namespace DoAnFW.Areas.Admin.Controllers
                 ViewBag.TotalIteam = context.TotalSaleItem(dt.Month, dt.Year);
                 ViewData["Name"] = HttpContext.Session.GetString("Name");
                 ViewData["Username"] = HttpContext.Session.GetString("Username");
-                return View();
+                return View(context.GetListSPAdmin());
             }
             else
             {

@@ -1,10 +1,11 @@
-﻿
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Index";
     Layout = "_Layout";
 }
 <!-- MAIN CONTENT-->
-
+@model List<Object>
+@{ int i = 1; }
 
 <div class="section__content section__content--p30">
     <div class="container-fluid">
@@ -122,6 +123,43 @@
                 </div>
             </div>
         </div>
+
+
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Ảnh</th>
+                        <th>Tên</th>
+                        <th>Nhà sản xuất</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    var imagePath = "/image/" + (item.GetType().GetProperty("IMG").GetValue(item, null));
+                    <tbody>
+                        <tr class="tr-shadow">
+                            <td>@i</td>
+
+                            <td><img class="img-rounded" height="120" style="border-radius: 8px;" src="@imagePath" /></td>
+
+                            <td class="desc">@item.GetType().GetProperty("TenSP").GetValue(item, null)</td>
+                            <td>@item.GetType().GetProperty("TenNH").GetValue(item, null)</td>
+                            <td>
+                                <span class="status--process">@item.GetType().GetProperty("Gia").GetValue(item, null)</span>
+                            </td>
+                            <td>@item.GetType().GetProperty("SoLuongTon").GetValue(item, null)</td>
+
+                        </tr>
+                    </tbody>
+                    i = i + 1;
+                }
+            </table>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="copyright">
