@@ -6,6 +6,7 @@
 }
 @model IEnumerable<DoAnFW.Models.HoaDon>
 @{ int i = 1; }
+<h3> QUẢN LÍ HÓA ĐƠN</h3>
 <div class="table-responsive table-responsive-data2">
     <table class="table table-data2">
         <thead>
@@ -26,30 +27,22 @@
             <tbody>
                 <tr class="tr-shadow">
                     <td>@i</td>
-                    <td>
-                        <span class="block-email">@item.GetType().GetProperty("MaHD").GetValue(item, null)</span>
+                    <td >@item.GetType().GetProperty("NgayLap").GetValue(item, null)
                     </td>
                     <td>
                         <span class="block-email">@item.GetType().GetProperty("MaHD").GetValue(item, null)</span>
                     </td>
-                    <td class="desc">@item.GetType().GetProperty("MaKH").GetValue(item, null)</td>
-                    <td>@item.GetType().GetProperty("NgayLap").GetValue(item, null)</td>
+                    <td class="desc">@item.GetType().GetProperty("MaNL").GetValue(item, null)</td>
+                    <td>@item.GetType().GetProperty("MaKH").GetValue(item, null)</td>
                     <td>
                         <span class="status--process">@item.GetType().GetProperty("TongGia").GetValue(item, null)</span>
                     </td>
                     <td>@item.GetType().GetProperty("TrangThai").GetValue(item, null)</td>
                     <td>
                         <div class="table-data-feature">
-
-                            <button class="item" data-toggle="tooltip" data-placement="top" title="Edit" id="@item.GetType().GetProperty("MaHD").GetValue(item, null)">
+                            <a asp-action="EditHoaDon" asp-route-id="@item.GetType().GetProperty("MaHD").GetValue(item, null)" class="item" data-toggle="tooltip" data-placement="top" title="Edit" id="@item.GetType().GetProperty("MaHD").GetValue(item, null)">
                                 <i class="zmdi zmdi-edit"></i>
-                            </button>
-                            <form asp-action="DeleteHoaDon" asp-route-Id="@item.GetType().GetProperty("MaHD").GetValue(item, null)" class="d-inline">
-                                <button class="item" type="submit" title="Delete">
-                                    <i class="zmdi zmdi-delete"></i>
-                                </button>
-                            </form>
-
+                            </a>
                         </div>
                     </td>
                 </tr>

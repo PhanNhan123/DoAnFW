@@ -2,41 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DoAnFW.Models;
 using Microsoft.AspNetCore.Mvc;
+using DoAnFW.Models;
 
 namespace DoAnFW.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class HoaDonController : Controller
+    public class TonKhoController : Controller
     {
         public IActionResult Index()
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
-            return View(context.GetHoaDons());
-        }
-        public IActionResult InsertHoaDon()
-        {
-            return View();
+
+            return View(context.GetSPTonKho());
         }
         [HttpGet]
-        public IActionResult EditHoaDon(int id)
+        public IActionResult EditTonKho(int id)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
-            return View(context.GetHoaDonById(id));
+            ViewBag.sanpham = context.GetSanPhamById(id);
+            return View(context.GetTonKhoID(id));
         }
-        [HttpPost]
+        [HttpPost]  
         [ValidateAntiForgeryToken]
-        public IActionResult EditHoaDon(HoaDon hd)
+        public IActionResult EditTonKho(TonKho tk)
         {
+
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
-            var result = context.UpdateHoaDon(hd);
+            var result = context.UpdateTonKHo(tk);
             if (result > 0)
-                ViewData["thongbao"] = "Sửa thành công";
+                ViewData["thongbao"] = "Cập nhật thành công";
             else
-                ViewData["thongbao"] = "Sửa không thành công";
+                ViewData["thongbao"] = "Cập nhật không thành công";
             return RedirectToAction("Index");
         }
-
     }
 }

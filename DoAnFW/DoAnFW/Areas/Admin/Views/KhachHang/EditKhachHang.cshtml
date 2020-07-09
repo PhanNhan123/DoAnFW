@@ -3,50 +3,56 @@
     ViewData["Title"] = "EditKhachHang";
     Layout = "_Layout";
 }
-<form action="UpdateKhachHang" method="POST" enctype="multipart/form-data" class="form-horizontal">
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-    <div class="row form-group">
-        <div class="col col-md-3">
-            <label for="text-input" class=" form-control-label">Mã Khách Hàng</label>
-        </div>
-        <div class="col-12 col-md-9">
-            <input type="text" id="MaKH" name="MaKH" value="@Model.MaKH" class="form-control" disabled>
-        </div>
-    </div>
+<div class="card-body card-block">
 
-    <div class="row form-group">
-        <div class="col col-md-3">
-            <label for="text-input" class=" form-control-label">Tên khách hàng</label>
-        </div>
-        <div class="col-12 col-md-9">
-            <input type="text" id="TenKH" name="TenKH" value="@Model.TenKH" class="form-control">
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col col-md-3">
-            <label for="text-input" class=" form-control-label">Số điện thoại</label>
-        </div>
-        <div class="col-12 col-md-9">
-            <input type="text" id="SDT" name="SDT" value="@Model.SDT" class="form-control">
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col col-md-3">
-            <label for="text-input" class=" form-control-label">Địa chỉ</label>
-        </div>
-        <div class="col-12 col-md-9">
-            <input type="text" id="DiaChi" name="DiaChi" value="@Model.DiaChi" class="form-control">
-        </div>
-    </div>
+    <form asp-action="EditKhachHang" method="POST" enctype="multipart/form-data" class="form-horizontal">
 
-    <div class="card-footer">
-        <button type="submit" class="btn btn-primary btn-sm">
-            <i class="fa fa-dot-circle-o"></i> Cập nhật thông tin khách hàng
-        </button>
-        <button class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Index", "KhachHang")'">
-            <i class="fa fa-ban"></i>Thoát
-        </button>
-    </div>
-</form>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Mã Khách Hàng</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <input  type="text" id="MaKH" name="MaKH" value="@Model.MaKH" class="form-control" disabled>
+            </div>
+        </div>
 
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Tên khách hàng</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <input asp-for="TenKH" type="text" id="TenKH" name="TenKH" value="@Model.TenKH" class="form-control">
+                <input asp-for="MaKH" type="hidden" value="@Model.MaKH" class="form-control">
 
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Số điện thoại</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <input asp-for="SDT" type="text" id="SDT" name="SDT" value="@Model.SDT" class="form-control">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Địa chỉ</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <input asp-for="DiaChi" type="text" id="DiaChi" name="DiaChi" value="@Model.DiaChi" class="form-control">
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-sm">
+                <i class="fa fa-dot-circle-o"></i> Cập nhật thông tin khách hàng
+            </button>
+            <button class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Index", "KhachHang")'">
+                <i class="fa fa-ban"></i>Thoát
+            </button>
+        </div>
+    </form>
+
+</div>

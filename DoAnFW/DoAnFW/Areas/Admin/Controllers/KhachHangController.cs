@@ -38,25 +38,25 @@ namespace DoAnFW.Areas.Admin.Controllers
             }
             return View();
         }
-
+        [HttpGet]
         public IActionResult EditKhachHang(int id)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
             return View(context.GetKhachHangById(id));
         }
-        public IActionResult UpdateKhachHang(KhachHang kh)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditKhachHang(KhachHang kh)
         {
+
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
-            int count = context.UpdateKhachHang(kh);
-            if (count > 0)
-            {
-                ViewBag.flat = 1;
-            }
+            var result = context.UpdateKhachHang(kh);
+            if (result > 0)
+                ViewData["thongbao"] = "Cập nhật thành công";
             else
-            {
-                ViewBag.flat = 0;
-            }
-            return View();
+                ViewData["thongbao"] = "Cập nhật không thành công";
+            return RedirectToAction("Index");
         }
+        
     }
 }

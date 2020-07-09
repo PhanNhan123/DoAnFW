@@ -1,4 +1,5 @@
 ﻿@model DoAnFW.Models.SanPham
+@{ List<DoAnFW.Models.NhanHieu> nhanhieu = ViewBag.nhanhieu;}
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Chỉnh sửa thông tin sản phẩm";
@@ -12,7 +13,7 @@
 <div class="card-body card-block">
 
 
-    <form action="InsertSanPham" method="POST" enctype="multipart/form-data" class="form-horizontal">
+    <form asp-action="EditSanPham" asp-controller="SanPham" method="POST" enctype="multipart/form-data" class="form-horizontal">
 
 
         <div class="row form-group">
@@ -20,7 +21,7 @@
                 <label class=" form-control-label">Mã sản phẩm</label>
             </div>
             <div class="col-12 col-md-9">
-                <p class="form-control-static">//<i>@Model.MaSP</i></p>
+                <p class="form-control-static"><i>@Model.MaSP</i></p>
             </div>
         </div>
 
@@ -29,7 +30,8 @@
                 <label for="text-input" class=" form-control-label">Tên sản phẩm</label>
             </div>
             <div class="col-12 col-md-9">
-                <input type="text" id="TenSP" name="TenSP" value="@Model.TenSP" class="form-control">
+                <input asp-for="TenSP" type="text" id="TenSP" name="TenSP" value="@Model.TenSP" class="form-control">
+                <input asp-for="MaSP" type="hidden" value="@Model.MaSP" class="form-control">
             </div>
         </div>
 
@@ -38,12 +40,21 @@
                 <label for="select" class=" form-control-label">Thương hiệu</label>
             </div>
             <div class="col-12 col-md-9">
-                <select name="MaNH" id="MaNH" class="form-control">
+                <select asp-for="MaNH" name="MaNH" id="MaNH" class="form-control">
 
-                    @*@foreach (var item in Model)
+                    @foreach (var nh in nhanhieu)
+                    {
+                        if (@nh.MaNH == @Model.MaNH)
                         {
-                            <option value="@item.MaNH" id="@item.MaNH">@item.TenNH</option>
-                        }*@
+                            <option value="@nh.MaNH" id="@nh.MaNH" selected>@nh.TenNH</option>
+
+                        }
+                        else
+                        {
+                            <option value="@nh.MaNH" id="@nh.MaNH">@nh.TenNH</option>
+
+                        }
+                    }
                 </select>
             </div>
         </div>
@@ -52,7 +63,7 @@
                 <label class=" form-control-label">Giá</label>
             </div>
             <div class="col-12 col-md-9">
-                <input type="number" id="Gia" name="Gia" placeholder="0đ" class="form-control">
+                <input asp-for="Gia" type="number" id="Gia" name="Gia" value="@Model.Gia" class="form-control">
             </div>
         </div>
         <div class="row form-group">
@@ -60,17 +71,16 @@
                 <label for="textarea-input" class=" form-control-label">Mô tả</label>
             </div>
             <div class="col-12 col-md-9">
-                <textarea name="MoTa" id="MoTa" rows="9" placeholder="mô tả sản phẩm" class="form-control"></textarea>
+                <textarea asp-for="MoTa" name="MoTa" id="MoTa" rows="9" value="@Model.MoTa" class="form-control"></textarea>
             </div>
         </div>
-
 
         <div class="row form-group">
             <div class="col col-md-3">
                 <label for="img-input" class=" form-control-label">Thêm Ảnh </label>
             </div>
             <div class="col-12 col-md-9">
-                <input type="text" id="IMG" name="IMG" placeholder="" class="form-control">
+                <input type="file" id="IMG" name="IMG" placeholder="" class="form-control">
             </div>
         </div>
 
@@ -80,7 +90,7 @@
                 <label for="password-input" class=" form-control-label">Tương thích</label>
             </div>
             <div class="col-12 col-md-9">
-                <input type="text" id="TuongThich" name="TuongThich" placeholder="" class="form-control">
+                <input asp-for="TuongThich" type="text" id="TuongThich" name="TuongThich" value="@Model.TuongThich" class="form-control">
             </div>
         </div>
         <div class="row form-group">
@@ -88,7 +98,7 @@
                 <label for="password-input" class=" form-control-label">Jack cắm</label>
             </div>
             <div class="col-12 col-md-9">
-                <input type="text" id="Jack_cam" name="Jack_cam" placeholder="" class="form-control">
+                <input asp-for="Jack_cam" type="text" id="Jack_cam" name="Jack_cam" value="@Model.Jack_cam" class="form-control">
             </div>
         </div>
         <div class="row form-group">
@@ -96,7 +106,7 @@
                 <label for="password-input" class=" form-control-label">Kích thước</label>
             </div>
             <div class="col-12 col-md-9">
-                <input type="text" id="KichThuoc" name="KichThuoc" placeholder="" class="form-control">
+                <input asp-for="KichThuoc" type="text" id="KichThuoc" name="KichThuoc" value="@Model.KichThuoc" class="form-control">
             </div>
         </div>
         <div class="row form-group">
@@ -104,7 +114,7 @@
                 <label for="password-input" class=" form-control-label">Công nghệ</label>
             </div>
             <div class="col-12 col-md-9">
-                <input type="text" id="CongNghe" name="CongNghe" placeholder="" class="form-control">
+                <input asp-for="CongNghe" type="text" id="CongNghe" name="CongNghe" value="@Model.CongNghe" class="form-control">
             </div>
         </div>
         <div class="row form-group">
@@ -112,12 +122,12 @@
                 <label for="password-input" class=" form-control-label">Trọng lượng</label>
             </div>
             <div class="col-12 col-md-9">
-                <input type="text" id="TrongLuong" name="TrongLuong" placeholder="" class="form-control">
+                <input asp-for="TrongLuong" type="text" id="TrongLuong" name="TrongLuong" value="@Model.TrongLuong" class="form-control">
             </div>
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary btn-sm">
-                <i class="fa fa-dot-circle-o"></i> Thêm
+                <i class="fa fa-dot-circle-o"></i> Lưu
             </button>
             <button type="reset" class="btn btn-danger btn-sm">
                 <i class="fa fa-ban"></i> Nhập lại
