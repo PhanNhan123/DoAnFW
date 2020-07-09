@@ -168,7 +168,7 @@ namespace DoAnFW.Models
                 conn.Open();
                 var str = "update khachhang " +
                     "set TenKH = @ten, SĐT=@sdt, DiaChi=@diachi" +
-                    " where MaKH="+kh.MaKH;
+                    " where MaKH=" + kh.MaKH;
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("ten", kh.TenKH);
                 cmd.Parameters.AddWithValue("sdt", kh.SDT);
@@ -215,7 +215,7 @@ namespace DoAnFW.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                var  str = " update sanpham set TenSP=@ten, MoTa=@mota, IMG =@IMG, Gia=@Gia, TuongThich =@TuongThich, Jack_cam=@Jack_cam, KichThuoc =@Kthuoc and CongNghe=@CN, TrongLuong =@TrongLuong, MaNH =@MaNH where MaSP=" + sp.MaSP;
+                var str = " update sanpham set TenSP=@ten, MoTa=@mota, IMG =@IMG, Gia=@Gia, TuongThich =@TuongThich, Jack_cam=@Jack_cam, KichThuoc =@Kthuoc and CongNghe=@CN, TrongLuong =@TrongLuong, MaNH =@MaNH where MaSP=" + sp.MaSP;
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("ten", sp.TenSP);
                 cmd.Parameters.AddWithValue("mota", sp.MoTa);
@@ -224,7 +224,7 @@ namespace DoAnFW.Models
                 cmd.Parameters.AddWithValue("TuongThich", sp.TuongThich);
                 cmd.Parameters.AddWithValue("Jack_cam", sp.Jack_cam);
                 cmd.Parameters.AddWithValue("Kthuoc", sp.KichThuoc);
-                cmd.Parameters.AddWithValue("CN", sp.CongNghe); 
+                cmd.Parameters.AddWithValue("CN", sp.CongNghe);
                 cmd.Parameters.AddWithValue("TrongLuong", sp.TrongLuong);
                 cmd.Parameters.AddWithValue("MaNH", sp.MaNH);
                 return (cmd.ExecuteNonQuery());
@@ -387,7 +387,7 @@ namespace DoAnFW.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                var str = "update hoadon set MaNL = +@maNL , MaKH = @maKH, TongGia=@Tong, TrangThai =@trangthai where MaHD=" + hd.MaHD ;
+                var str = "update hoadon set MaNL = +@maNL , MaKH = @maKH, TongGia=@Tong, TrangThai =@trangthai where MaHD=" + hd.MaHD;
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("maNL", hd.MaNL);
                 cmd.Parameters.AddWithValue("maKH", hd.MaKH);
@@ -918,8 +918,56 @@ namespace DoAnFW.Models
             return chartData;
         }
 
+        public List<object> GetPieChart()
+        {
+            List<ChartViewModel> list = new List<ChartViewModel>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "SELECT sanpham.MaSP,TenSP,sum(cthd.SoLuong)as SL FROM sanpham,cthd where sanpham.MaSP=cthd.MaSP GROUP BY sanpham.MaSP,TenSP limit 5";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                var result = cmd.ExecuteReader();
+                while (result.Read())
+                {
+                    ChartViewModel chartViewModel = new ChartViewModel();
+                    chartViewModel.Name = result["TenSP"].ToString();
+                    chartViewModel.Value = Convert.ToInt32(result["SL"]);
+                    list.Add(chartViewModel);
+                }
+            }
+            List<object> chartData = new List<object>();
+            var lable = list.Select(p => p.Name).ToArray();
+            var value = list.Select(p => p.Value).ToArray();
+            chartData.Add(lable);
+            chartData.Add(value);
+            return chartData;
+        }
 
 
+        public List<object> GetQuarterChart()
+        {
+            List<ChartViewModel> list = new List<ChartViewModel>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "SELECT quarter(hoadon.NgayLap) as Quarter,sum(TongGia) as Tong from hoadon GROUP BY quarter(hoadon.NgayLap) ORDER BY quarter(hoadon.NgayLap) ASC";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                var result = cmd.ExecuteReader();
+                while (result.Read())
+                {
+                    ChartViewModel chartViewModel = new ChartViewModel();
+                    chartViewModel.Name = result["Quarter"].ToString();
+                    chartViewModel.Value = Convert.ToInt32(result["Tong"]);
+                    list.Add(chartViewModel);
+                }
+            }
+            List<object> chartData = new List<object>();
+            var lable = list.Select(p => p.Name).ToArray();
+            var value = list.Select(p => p.Value).ToArray();
+            chartData.Add(lable);
+            chartData.Add(value);
+            return chartData;
+        }
         //San pham
         public List<object> GetListSPAdmin()
         {
@@ -964,7 +1012,8 @@ namespace DoAnFW.Models
                 cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();
                 HoaDon hd = new HoaDon();
-                    while (reader.Read()) {
+                while (reader.Read())
+                {
                     hd.MaHD = int.Parse(reader["MaHD"].ToString());
                     hd.MaNL = int.Parse(reader["MaNL"].ToString());
                     hd.MaKH = int.Parse(reader["MaKH"].ToString());
@@ -1025,7 +1074,7 @@ namespace DoAnFW.Models
                     tk.MaSP = int.Parse(reader["MaSP"].ToString());
                     tk.SoLuongTon = int.Parse(reader["SoLuongTon"].ToString());
                     tk.MaKho = int.Parse(reader["MaKho"].ToString());
-                    
+
                 }
                 return tk;
             }

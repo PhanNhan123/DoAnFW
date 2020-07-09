@@ -10,5 +10,7 @@ namespace DoAnFW.Models
         public int Day { get; set; }
         public int Month { get; set; }
         public double Sum { get; set; }
+        public string Name { get; set; }
+        public int Value { get; set; }
     }
 }

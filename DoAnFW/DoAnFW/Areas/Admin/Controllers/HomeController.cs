@@ -79,7 +79,19 @@ namespace DoAnFW.Areas.Admin.Controllers
 
             return Json(result);
         }
+        public IActionResult GetPieChart()
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
+            var result = context.GetPieChart();
+            return Json(result);
 
+        }
+        public IActionResult GetQuarterChart()
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
+            var result = context.GetQuarterChart();
+            return Json(result);
+        }
         //Logout
         public ActionResult Logout()
         {

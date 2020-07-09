@@ -599,8 +599,100 @@
             }
         }
     </script>
+    <script>
+        //pie chart thóng kê sản phẩm bán ra
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/Home/GetPieChart",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: data_arr,
+            })
+        });
+        function data_arr(data) {
+            var data_xp = data[0];
+            var data_yp = data[1];
+            //polar
+            var ctxPA = document.getElementById("Top5Products");
+            ctxPA.height = 400;
+            var myPolarChart = new Chart(ctxPA, {
+                type: 'polarArea',
+                data: {
+                    labels: data_xp,
+                    datasets: [{
+                        data: data_yp,
+                        backgroundColor: ["rgba(219, 0, 0, 0.5)", "rgba(0, 165, 2, 0.5)", "rgba(255, 195, 15, 0.5)",
+                            "rgba(55, 59, 66, 0.5)", "rgba(0, 0, 0, 0.7)"
+                        ],
+                        hoverBackgroundColor: ["rgba(219, 0, 0, 0.7)", "rgba(0, 165, 2, 0.7)",
+                            "rgba(255, 195, 15, 0.7)", "rgba(55, 59, 66, 0.7)", "rgba(0, 0, 0, 0.8)"
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+
+        }
+    </script>
 
 
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Admin/Home/GetQuarterChart",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: data_ar,
+            })
+        });
+        function data_ar(data) {
+            var data_name = data[0];
+            var data_value = data[1];
+
+
+            var ctx = document.getElementById("myChart");
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data_name,
+                    datasets: [{
+                        label: 'Quý',
+                        data: data_value,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(153, 102, 255, 0.6)',
+                            'rgba(255, 159, 64, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

@@ -643,3 +643,6 @@ C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Do
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\DoAnFW.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\Index.cshtml.g.cs
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Views\ProductDetail\Index.cshtml.g.cs
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\HoaDon\EditHoaDon.cshtml.g.cs
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\TonKho\EditTonKho.cshtml.g.cs
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\TonKho\Index.cshtml.g.cs
