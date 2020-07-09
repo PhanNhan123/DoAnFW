@@ -165,13 +165,12 @@ namespace DoAnFW.Models
             {
                 conn.Open();
                 var str = "update khachhang " +
-                    "set TenKH = @ten and SĐT=@sdt and DiaChi=@diachi" +
-                    " where MaKH=@ma";
+                    "set TenKH = @ten, SĐT=@sdt, DiaChi=@diachi" +
+                    " where MaKH="+kh.MaKH;
                 MySqlCommand cmd = new MySqlCommand(str, conn);
-                cmd.Parameters.AddWithValue("ma", kh.MaKH);
                 cmd.Parameters.AddWithValue("ten", kh.TenKH);
-                cmd.Parameters.AddWithValue("TK", kh.SDT);
-                cmd.Parameters.AddWithValue("MK", kh.DiaChi);
+                cmd.Parameters.AddWithValue("sdt", kh.SDT);
+                cmd.Parameters.AddWithValue("diachi", kh.DiaChi);
                 return (cmd.ExecuteNonQuery());
             }
         }
@@ -386,14 +385,10 @@ namespace DoAnFW.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                var str = "update hoadon " +
-                    "TongGia=@Tong" +
-                    "TrangThai =@trangthai" +
-                    " where MaHD=@mahd and MaNL=@manl and MaKH=@makh";
+                var str = "update hoadon set MaNL = +@maNL , MaKH = @maKH, TongGia=@Tong, TrangThai =@trangthai where MaHD=" + hd.MaHD ;
                 MySqlCommand cmd = new MySqlCommand(str, conn);
-                cmd.Parameters.AddWithValue("mahd", hd.MaHD);
-                cmd.Parameters.AddWithValue("manl", hd.MaNL);
-                cmd.Parameters.AddWithValue("makh", hd.MaKH);
+                cmd.Parameters.AddWithValue("maNL", hd.MaNL);
+                cmd.Parameters.AddWithValue("maKH", hd.MaKH);
                 cmd.Parameters.AddWithValue("ngay", hd.NgayLap);
                 cmd.Parameters.AddWithValue("Tong", hd.TongGia);
                 cmd.Parameters.AddWithValue("trangthai", hd.TrangThai);
@@ -771,16 +766,19 @@ namespace DoAnFW.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string sql = "select * from hoadon where MAHD=" + id;
+                string sql = "select * from hoadon where MAHD= @id limit 1";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("id", id);
                 var reader = cmd.ExecuteReader();
                 HoaDon hd = new HoaDon();
-                hd.MaHD = int.Parse(reader["MaHD"].ToString());
-                hd.MaNL = int.Parse(reader["MaNL"].ToString());
-                hd.MaKH = int.Parse(reader["MaKH"].ToString());
-                hd.NgayLap = Convert.ToDateTime(reader["NgayLap"].ToString());
-                hd.TongGia = float.Parse(reader["TongGia"].ToString());
-                hd.TrangThai = reader["TrangThai"].ToString();
+                    while (reader.Read()) {
+                    hd.MaHD = int.Parse(reader["MaHD"].ToString());
+                    hd.MaNL = int.Parse(reader["MaNL"].ToString());
+                    hd.MaKH = int.Parse(reader["MaKH"].ToString());
+                    hd.NgayLap = Convert.ToDateTime(reader["NgayLap"].ToString());
+                    hd.TongGia = float.Parse(reader["TongGia"].ToString());
+                    hd.TrangThai = reader["TrangThai"].ToString();
+                }
                 return hd;
             }
 

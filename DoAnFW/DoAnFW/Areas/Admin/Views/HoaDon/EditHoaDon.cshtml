@@ -1,0 +1,86 @@
+﻿@model DoAnFW.Models.HoaDon
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Cập nhật hóa đơn";
+    Layout = "_Layout";
+}
+
+<div class="card-header">
+    <i class="fab fa-shopify"></i>&ensp;<strong>Cập nhật tình trạng hóa đơn</strong>
+</div>
+<div class="card-body card-block">
+
+
+    <form asp-action="EditHoaDon" asp-controller="HoaDon" method="POST" enctype="multipart/form-data" class="form-horizontal">
+
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Mã hóa đơn</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <input type="text"  value="@Model.MaHD" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Mã khách hàng</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <input  type="text"  value="@Model.MaKH" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Mã người dùng</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <input  type="text" value="@Model.MaNL" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Ngày lập</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <input asp-for="NgayLap" type="datetime" value="@Model.NgayLap" class="form-control" disabled>
+
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Tổng giá</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <input asp-for="TongGia" type="datetime"  value="@Model.TongGia" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Trạng Thái</label>
+            </div>
+            <div class="col-12 col-md-9">
+                <select asp-for="TrangThai"  class="form-control">
+                    <option value="Chưa thanh toán" id="TrangThai" selected>Chưa thanh toán</option>
+                    <option value="Đã xác nhận" id="TrangThai" selected>Đã xác nhận</option>
+                    <option value="Đã thanh toán" id="TrangThai" selected>Đã thanh toán</option>
+                </select>
+                <input asp-for="MaHD" type="hidden" value="@Model.MaHD" class="form-control">
+                <input asp-for="MaKH" type="hidden" value="@Model.MaKH" class="form-control">
+                <input asp-for="MaNL" type="hidden" value="@Model.MaNL" class="form-control">
+                <input asp-for="TongGia" type="hidden" value="@Model.TongGia" class="form-control">
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-sm">
+                <i class="fa fa-dot-circle-o"></i> Lưu
+            </button>
+            <button class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Index", "HoaDon")'">
+                <i class="fa fa-ban"></i>Thoát
+            </button>
+        </div>
+    </form>
+</div>
+
+
+
+

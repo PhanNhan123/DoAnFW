@@ -19,7 +19,14 @@ namespace DoAnFW.Areas.Admin.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult EditHoaDon(int id)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
+            return View(context.GetHoaDonById(id));
+        }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult EditHoaDon(HoaDon hd)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
@@ -30,17 +37,6 @@ namespace DoAnFW.Areas.Admin.Controllers
                 ViewData["thongbao"] = "Sửa không thành công";
             return RedirectToAction("Index");
         }
-        [HttpPost]
-        public IActionResult DeleteHoaDon(string Id)
-        {
 
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
-            int count = context.DeleteHoaDon(Id);
-            if (count > 0)
-                ViewData["thongbao"] = "Xóa thành công";
-            else
-                ViewData["thongbao"] = "Xóa không thành công";
-            return RedirectToAction("Index");
-        }
     }
 }
