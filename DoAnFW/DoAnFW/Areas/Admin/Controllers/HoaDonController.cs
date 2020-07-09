@@ -37,6 +37,12 @@ namespace DoAnFW.Areas.Admin.Controllers
                 ViewData["thongbao"] = "Sửa không thành công";
             return RedirectToAction("Index");
         }
+        public IActionResult PrintHoaDon(int id)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
+            return View(context.GetCTHDs());
+
+        }
 
     }
 }
