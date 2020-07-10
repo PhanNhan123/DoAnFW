@@ -25,16 +25,22 @@ namespace DoAnFW.Areas.Admin.Controllers
         }
         [HttpPost]  
         [ValidateAntiForgeryToken]
-        public IActionResult EditTonKho(TonKho tk)
+        public IActionResult UpdateTonKHo(TonKho tk)
         {
 
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
             var result = context.UpdateTonKHo(tk);
             if (result > 0)
-                ViewData["thongbao"] = "Cập nhật thành công";
+            {
+                ViewData["result"] = "Cập nhập số lượng tồn kho thành công";
+                ViewBag.flat = 1;
+            }
             else
-                ViewData["thongbao"] = "Cập nhật không thành công";
-            return RedirectToAction("Index");
+            {
+                ViewData["result"] = "Cập nhập số lượng tồn kho thất bại!";
+                ViewBag.flat = 0;
+            }
+            return View();
         }
     }
 }

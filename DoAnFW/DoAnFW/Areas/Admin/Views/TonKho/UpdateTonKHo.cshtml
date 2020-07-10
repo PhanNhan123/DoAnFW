@@ -1,17 +1,16 @@
 ﻿
 @{
-    ViewData["Title"] = "UpdateKhachHang";
+    ViewData["Title"] = "UpdateTonKHo";
     Layout = "_Layout";
-
 }
 
 <h1>Kết quả</h1>
 <br />
 @{
-    if (ViewBag.flat  >0)
+    if (ViewBag.flat > 0)
     {
         <div class="alert alert-success" role="alert">
-            Cập nhật thông tin khách hàng thành công
+            Cập nhật số lượng hàng tồn kho thành công
         </div>
     }
     else
@@ -21,3 +20,4 @@
         </div>
     }
 }
+

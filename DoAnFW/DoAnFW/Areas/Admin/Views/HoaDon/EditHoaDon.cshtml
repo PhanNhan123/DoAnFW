@@ -11,7 +11,7 @@
 <div class="card-body card-block">
 
 
-    <form asp-action="EditHoaDon" asp-controller="HoaDon" method="POST" enctype="multipart/form-data" class="form-horizontal">
+    <form asp-action="UpdateHoaDon" asp-controller="HoaDon" method="POST" enctype="multipart/form-data" class="form-horizontal">
 
         <div class="row form-group">
             <div class="col col-md-3">
@@ -61,7 +61,7 @@
             <div class="col-12 col-md-9">
                 <select asp-for="TrangThai"  class="form-control">
                     <option value="Chưa thanh toán" id="TrangThai" selected>Chưa thanh toán</option>
-                    <option value="Đã xác nhận" id="TrangThai" selected>Đã xác nhận</option>
+                    <option value="Chưa xác nhận" id="TrangThai" selected>Chưa xác nhận</option>
                     <option value="Đã thanh toán" id="TrangThai" selected>Đã thanh toán</option>
                 </select>
                 <input asp-for="MaHD" type="hidden" value="@Model.MaHD" class="form-control">

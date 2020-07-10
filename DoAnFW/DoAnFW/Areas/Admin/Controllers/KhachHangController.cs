@@ -34,7 +34,7 @@ namespace DoAnFW.Areas.Admin.Controllers
             else
             {
                 ViewData["result"] = "Thêm khách hàng thất bại";
-                ViewBag.flat = 1;
+                ViewBag.flat = 0;
             }
             return View();
         }
@@ -46,17 +46,24 @@ namespace DoAnFW.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditKhachHang(KhachHang kh)
+        public IActionResult UpdateKhachHang(KhachHang kh)
         {
 
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
             var result = context.UpdateKhachHang(kh);
             if (result > 0)
-                ViewData["thongbao"] = "Cập nhật thành công";
+            {
+                ViewData["result"] = "Cập nhập thông tin khách hàng thành công";
+                ViewBag.flat = 1;
+            }
             else
-                ViewData["thongbao"] = "Cập nhật không thành công";
-            return RedirectToAction("Index");
+            {
+                ViewData["result"] = "Cập nhập thông tin khách hàng thất bại!";
+                ViewBag.flat = 0;
+            }
+            return View();
+
         }
-        
+
     }
 }

@@ -27,15 +27,21 @@ namespace DoAnFW.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditHoaDon(HoaDon hd)
+        public IActionResult UpdateHoaDon(HoaDon hd)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
             var result = context.UpdateHoaDon(hd);
             if (result > 0)
-                ViewData["thongbao"] = "Sửa thành công";
+            {
+                ViewData["result"] = "Cập nhập hóa đơn thành công" ;
+                ViewBag.flat = 1;
+            }
             else
-                ViewData["thongbao"] = "Sửa không thành công";
-            return RedirectToAction("Index");
+            {
+                ViewData["result"] = "Cập nhập hóa đơn thất bại!";
+                ViewBag.flat = 0;
+            }
+            return View();
         }
         public IActionResult PrintHoaDon(int id)
         {
