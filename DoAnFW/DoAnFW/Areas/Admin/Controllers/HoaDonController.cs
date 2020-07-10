@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DoAnFW.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Http;
 namespace DoAnFW.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -33,7 +33,7 @@ namespace DoAnFW.Areas.Admin.Controllers
             var result = context.UpdateHoaDon(hd);
             if (result > 0)
             {
-                ViewData["result"] = "Cập nhập hóa đơn thành công" ;
+                ViewData["result"] = "Cập nhập hóa đơn thành công";
                 ViewBag.flat = 1;
             }
             else
@@ -49,6 +49,13 @@ namespace DoAnFW.Areas.Admin.Controllers
             return View(context.GetCTHDs());
 
         }
+        public IActionResult Invoice()
+        {
 
+            ViewBag.Date = DateTime.Now;
+            ViewData["Name"] = HttpContext.Session.GetString("Name");
+            ViewData["Username"] = HttpContext.Session.GetString("Username");
+            return View();
+        }
     }
 }

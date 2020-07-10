@@ -745,6 +745,152 @@ namespace DoAnFW.Models
         }
 
 
+        public List<SanPham> top5()
+        {
+            List<SanPham> list = new List<SanPham>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT  * FROM `sanpham` ORDER BY MaSP DESC LIMIT 5 ", conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new SanPham()
+                        {
+                            MaSP = int.Parse(reader["MaSP"].ToString()),
+                            TenSP = reader["TenSP"].ToString(),
+                            MoTa = reader["Mota"].ToString(),
+                            IMG = reader["IMG"].ToString(),
+                            MaNH = reader["MaNH"].ToString(),
+                            Gia = double.Parse(reader["Gia"].ToString()),
+                            TuongThich = reader["TuongThich"].ToString(),
+                            Jack_cam = reader["Jack_cam"].ToString(),
+                            KichThuoc = reader["KichThuoc"].ToString(),
+                            CongNghe = reader["CongNghe"].ToString(),
+                            TrongLuong = reader["TrongLuong"].ToString()
+                        });
+                    }
+                }
+
+
+
+            }
+            return list;
+        }
+        public List<SanPham> top2()
+        {
+            List<SanPham> list = new List<SanPham>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT  * FROM `sanpham` ORDER BY MaSP DESC LIMIT 2 ", conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new SanPham()
+                        {
+                            MaSP = int.Parse(reader["MaSP"].ToString()),
+                            TenSP = reader["TenSP"].ToString(),
+                            MoTa = reader["Mota"].ToString(),
+                            IMG = reader["IMG"].ToString(),
+                            MaNH = reader["MaNH"].ToString(),
+                            Gia = double.Parse(reader["Gia"].ToString()),
+                            TuongThich = reader["TuongThich"].ToString(),
+                            Jack_cam = reader["Jack_cam"].ToString(),
+                            KichThuoc = reader["KichThuoc"].ToString(),
+                            CongNghe = reader["CongNghe"].ToString(),
+                            TrongLuong = reader["TrongLuong"].ToString()
+                        });
+                    }
+                }
+
+
+
+            }
+            return list;
+        }
+
+
+
+        public int Checkout(CheckoutViewModel model, List<Item> cart)
+        {
+            //string makh = Guid.NewGuid().ToString();
+            //string mahd = Guid.NewGuid().ToString();
+            var khachhang = new KhachHang()
+            {
+                //MaKH = makh,
+                TenKH = model.TenKH,
+                SDT = model.SDT,
+                DiaChi = model.DiaChi,
+
+
+            };
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "insert into khachhang ( TenKH, SĐT, DiaChi) values(@ten,@sdt,@diachi)";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+
+                cmd.Parameters.AddWithValue("ten", khachhang.TenKH);
+                cmd.Parameters.AddWithValue("sdt", khachhang.SDT);
+                cmd.Parameters.AddWithValue("diachi", khachhang.DiaChi);
+
+                var hoadon = new HoaDon()
+                {
+
+                    NgayLap = DateTime.Now,
+                    TongGia = model.TongGia,
+
+                };
+
+
+                var hd = "insert into hoadon ( MaNL,MaKH, NgayLap,TongGia,TrangThai) values(@manl,@ngaylap,LAST_INSERT_ID(),@tonggia,'chua xac nhan')";
+                MySqlCommand command = new MySqlCommand(hd, conn);
+                command.Parameters.AddWithValue("ngaylap", hoadon.NgayLap);
+                command.Parameters.AddWithValue("manl", hoadon.MaNL);
+                command.Parameters.AddWithValue("makh", hoadon.MaKH);
+                command.Parameters.AddWithValue("tonggia", hoadon.TongGia);
+
+
+
+
+                foreach (var item in cart)
+                {
+                    var cthd = new CTHD()
+                    {
+
+
+                        MaSP = item.SanPham.MaSP,
+
+                        SoLuong = item.Quantity,
+
+
+                    };
+                    var ct = "insert into cthd ( MaSP,MaHD,SoLuong) values(@masp,LAST_INSERT_ID(),@soluong)";
+                    MySqlCommand command1 = new MySqlCommand(ct, conn);
+
+
+                    command1.Parameters.AddWithValue("masp", cthd.MaSP);
+
+                    command1.Parameters.AddWithValue("soluong", cthd.SoLuong);
+
+
+                }
+
+
+            }
+            return 1;
+        }
+
+
+
+
+
+
+
 
 
 

@@ -1,4 +1,5 @@
 ﻿
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using DoAnFW.Models;
 
 
+
 namespace DoAnFW.Controllers
 {
     public class HomeController : Controller
@@ -16,10 +18,13 @@ namespace DoAnFW.Controllers
         private readonly ILogger<HomeController> _logger;
 
 
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
+
+
 
 
         //public IActionResult Index()
@@ -31,14 +36,18 @@ namespace DoAnFW.Controllers
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
             //ProductModel productModel = new ProductModel();
             ViewBag.products = context.load_carousel();
+            ViewBag.top5products = context.top5();
+            ViewBag.top2products = context.top2();
             return View();
         }
+
 
 
         public IActionResult Privacy()
         {
             return View();
         }
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

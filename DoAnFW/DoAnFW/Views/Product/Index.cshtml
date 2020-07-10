@@ -1,4 +1,5 @@
 ﻿
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <head>
     <link rel="stylesheet" href="~/css/List.css" />
@@ -7,42 +8,18 @@
 </head>
 <div class="main">
     <div class=" qc">
-        <img src="/image/qc.jpg">
+        <img src="/image/anhnen.jpg" width="100%" ; height="100%">
     </div>
     <div class="dropdown">
-        <button class="dropbtn">Loại phụ kiện<i class="fas fa-chevron-down"></i></button>
-        <div class="dropdown-content">
-            <a href="#">Tai nghe</a>
-            <a href="#">Cáp sạc</a>
-            <a href="#">Bao da, ốp</a>
-        </div>
+        <h3 style="width:500px;margin-top:20px">Danh sách sản phẩm</h3>
+
     </div>
     <br>
     <div class="list">
         <div class="row">
             @foreach (var product in ViewBag.products)
             {
-                <!--
-                <div class="product">
-                    <div class="img"><img style="width:100%;height:100%" src="@product.IMG " /></div>
-                    <div class="content">
 
-
-                        <a href="/product"><label><b>@product.TenSP</b></label></a>
-
-
-                        <p class="gia" style="color: red;"><b>@product.Gia</b> </p>
-
-
-                        <div class="button">
-                            <a asp-controller="Cart" asp-action="Buy" asp-route-MaSP="@product.MaSP">Mua Ngay</a>
-                            <a asp-controller="ProductDetail" asp-action="Detail" asp-route-MaSP="@product.MaSP">Xem chi tiết</a>
-                        </div>
-
-
-                    </div>
-                </div>
-                -->
                 <div class="col-md-3 product-grid">
                     <div class="image">
                         <a asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@product.MaSP">
@@ -53,13 +30,15 @@
                         </a>
                     </div>
                     <h5 class="text-center">@product.TenSP</h5>
-                    <h5 class="text-center">Price: @product.Gia</h5>
+                    <h5 class="text-center">Giá: @{string a = String.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0,0}", product.Gia);} @a</h5>
                     <a class="btn buy" asp-controller="Cart" asp-action="Buy" asp-route-MaSP="@product.MaSP">Mua Ngay</a>
                 </div>
 
 
 
+
             }
+
 
 
 
@@ -68,9 +47,8 @@
     <br />
 
 
+
 </div>
-
-
 
 
 

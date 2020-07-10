@@ -8,6 +8,7 @@ using DoAnFW.Models;
 
 
 
+
 namespace DoAnFW.Controllers
 {
     public class ProductController : Controller
@@ -17,11 +18,10 @@ namespace DoAnFW.Controllers
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
             //ProductModel productModel = new ProductModel();
             ViewBag.products = context.findAll();
+            ViewBag.top5products = context.top5();
+            ViewBag.top2products = context.top2();
             return View();
         }
     }
 }
-
-
-
 

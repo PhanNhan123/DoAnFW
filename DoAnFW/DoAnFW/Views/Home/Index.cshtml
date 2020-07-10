@@ -29,7 +29,9 @@
                 </ol>
 
 
+
                 <!-- Wrapper for slides -->
+
 
 
                 <div class="carousel-inner">
@@ -37,10 +39,11 @@
                     {
                         if (i == 1)
                         {
-                            <div class="item active" asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@product.MaSP">
-                                <img src="@product.IMG" alt="Los Angeles" style="width:100%; height:100%;">
+                            <div class="item active">
+                                <img src="/image/@product.IMG" alt="" style="width:100%; height:100%;">
                                 <div class="carousel-caption">
-                                    <h3>@product.TenSP</h3>
+                                    <h3 asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@product.MaSP">@product.TenSP</h3>
+
 
 
                                 </div>
@@ -49,9 +52,10 @@
                         else
                         {
                             <div class="item">
-                                <img src="@product.IMG" alt="Los Angeles" style="width:100%; height:100%;">
+                                <img src="/image/@product.IMG" alt="" style="width:100%; height:100%;">
                                 <div class="carousel-caption">
-                                    <h3>@product.TenSP</h3>
+                                    <h3 asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@product.MaSP">@product.TenSP</h3>
+
 
 
                                 </div>
@@ -62,40 +66,8 @@
 
 
 
-
-
-
-
-
-
-                    <!--
-                    <div class="item active">
-                        <img src="/image/loa-jbl-charge-4-black.jpg" alt="Los Angeles" style="width:100%; height:100%;">
-                        <div class="carousel-caption">
-                            <h3>Los Angeles</h3>
-                            <p>LA is always so much fun!</p>
-                        </div>
-                    </div>
-
-
-                    <div class="item">
-                        <img src="/image/loa-jbl-charge-4-black.jpg" alt="Chicago" style="width:100%;height:100%;">
-                        <div class="carousel-caption">
-                            <h3>Chicago</h3>
-                            <p>Thank you, Chicago!</p>
-                        </div>
-                    </div>
-
-
-                    <div class="item">
-                        <img src="/image/loa-jbl-charge-4-black.jpg" alt="New York" style="width:100%;height:100%;">
-                        <div class="carousel-caption">
-                            <h3>New York</h3>
-                            <p>We love the Big Apple!</p>
-                        </div>
-                    </div>
-                     -->
                 </div>
+
 
 
                 <!-- Left and right controls -->
@@ -116,67 +88,72 @@
     </div>
     <div class="content_2">
         <div class="column_2_1">
-            <img src="https://cdn.tgdd.vn/Products/Images/54/217951/tai-nghe-bluetooth-mozard-z702-xanh-1-600x600-1-600x600.jpg" />
+            <img asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@ViewBag.top2products[0].MaSP " src="/image/@ViewBag.top2products[0].IMG" />
         </div>
         <div class="column_2_2">
-            <span style="color: red; ">New</span>
+            <span style="color: red; font-size:30px">New</span>
+
 
 
             <h2>
 
 
-                Tai nghe Bluetooth Mozard Z702 Xanh
-            </h2>
-            <p class="link-buy">
-                <a asp-controller="Cart" asp-action="Buy" asp-route-MaSP="110001">
-                    Buy
-                </a>
-            </p>
-            <a style="font-size:21px;" asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="110001">Learn more ></a>
-        </div>
 
+                @ViewBag.top2products[0].TenSP
+            </h2>
+            <div class="link-buy">
+                <div class="button-buy">
+                    <a asp-controller="Cart" asp-action="Buy" asp-route-MaSP="@ViewBag.top2products[0].MaSP">
+                        Mua Ngay
+                    </a>
+                </div>
+            </div>
+            <a style="font-size:21px;" asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@ViewBag.top2products[0].MaSP">Xem chi tiết ></a>
+        </div>
 
     </div>
     <div class="content_2a">
 
 
+
         <div class="column_2_2a">
-            <span style="color: red; ">New</span>
+            <span style="color: red; font-size:30px">New</span>
+
 
 
             <h2>
-
-
-                Tai nghe chụp tai Gaming MozardX DS904 7.1 Đen
+                @ViewBag.top2products[1].TenSP
             </h2>
             <p class="link-buy">
-                <a asp-controller="Cart" asp-action="Buy" asp-route-MaSP="110002">
-                    Buy
+                <a asp-controller="Cart" asp-action="Buy" asp-route-MaSP="@ViewBag.top2products[1].MaSP">
+                    Mua Ngay
                 </a>
             </p>
-            <a style="font-size:21px;" asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="110002">Learn more ></a>
+            <a style="font-size:21px;" asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@ViewBag.top2products[1].MaSP">Xem chi tiết ></a>
         </div>
         <div class="column_2_1a">
-            <img src="https://cdn.tgdd.vn/Products/Images/54/214561/tai-nghe-chup-tai-gaming-mozardx-ds904-71-den-ava-600x600.jpg" />
+            <img asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@ViewBag.top2products[1].MaSP" src="/image/@ViewBag.top2products[1].IMG" />
         </div>
     </div>
     <div class="content_3">
+
         <div class="column_3_1">
             <div class="row_3_1_1">
                 <div class="js-product-title">
                     <div class="product-title">
                         <div class="img-product">
-                            <img src="/image/Loa-sony-srs-xb12-extra-bass.jpg" style="width:100%;height:100%;" />
+                            <img src="/image/@ViewBag.top5products[1].IMG" style="width:100%;height:100%;" />
                         </div>
                         <div class="product-content">
-                            <p>Loa JBL</p>
+                            <p>@ViewBag.top5products[1].TenSP</p>
                         </div>
                         <div class="btn-buynow">
                             <p class="link-buy">
-                                <a href="">
+                                <a asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@ViewBag.top5products[1].MaSP">
                                     Mua ngay
                                 </a>
                             </p>
+
 
 
                         </div>
@@ -184,30 +161,34 @@
                 </div>
 
 
+
             </div>
+
 
 
             <div class="row_3_1_2">
                 <div class="js-product-title">
                     <div class="product-title">
                         <div class="img-product">
-                            <img src="/image/Loa-sony-srs-xb12-extra-bass.jpg" style="width:100%;height:100%;" />
+                            <img src="/image/@ViewBag.top5products[2].IMG" style="width:100%;height:100%;" />
                         </div>
                         <div class="product-content">
-                            <p>Loa JBL</p>
+                            <p>@ViewBag.top5products[2].TenSP</p>
                         </div>
                         <div class="btn-buynow">
                             <p class="link-buy">
-                                <a href="">
+                                <a asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@ViewBag.top5products[2].MaSP">
                                     Mua ngay
                                 </a>
                             </p>
+
 
 
                         </div>
                     </div>
                 </div>
             </div>
+
 
 
         </div>
@@ -215,17 +196,18 @@
             <div class="js-product-title-1">
                 <div class="product-title-1">
                     <div class="img-product-1">
-                        <img class="img-column-2" src="/image/Loa-sony-srs-xb12-extra-bass.jpg" style="width:100%;height:100%;" />
+                        <img class="img-column-2" src="/image/@ViewBag.top5products[0].IMG" style="width:100%;height:100%;" />
                     </div>
                     <div class="product-content-1">
-                        <p>Loa JBL</p>
+                        <p>@ViewBag.top5products[0].TenSP</p>
                     </div>
                     <div class="btn-buynow-1">
                         <p class="link-buy-1">
-                            <a href="">
+                            <a asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@ViewBag.top5products[0].MaSP">
                                 Mua ngay
                             </a>
                         </p>
+
 
 
                     </div>
@@ -237,17 +219,18 @@
                 <div class="js-product-title">
                     <div class="product-title">
                         <div class="img-product">
-                            <img src="/image/Loa-sony-srs-xb12-extra-bass.jpg" style="width:100%;height:100%;" />
+                            <img src="/image/@ViewBag.top5products[3].IMG" style="width:100%;height:100%;" />
                         </div>
                         <div class="product-content">
-                            <p>Loa JBL</p>
+                            <p>@ViewBag.top5products[3].TenSP</p>
                         </div>
                         <div class="btn-buynow">
                             <p class="link-buy">
-                                <a href="">
+                                <a asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@ViewBag.top5products[3].MaSP">
                                     Mua ngay
                                 </a>
                             </p>
+
 
 
                         </div>
@@ -258,17 +241,18 @@
                 <div class="js-product-title">
                     <div class="product-title">
                         <div class="img-product">
-                            <img src="/image/Loa-sony-srs-xb12-extra-bass.jpg" style="width:100%;height:100%;" />
+                            <img src="/image/@ViewBag.top5products[4].IMG" style="width:100%;height:100%;" />
                         </div>
                         <div class="product-content">
-                            <p>Loa JBL</p>
+                            <p>@ViewBag.top5products[4].TenSP</p>
                         </div>
                         <div class="btn-buynow">
                             <p class="link-buy">
-                                <a href="">
+                                <a asp-controller="ProductDetail" asp-action="Index" asp-route-MaSP="@ViewBag.top5products[4].MaSP">
                                     Mua ngay
                                 </a>
                             </p>
+
 
 
                         </div>
@@ -278,8 +262,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 

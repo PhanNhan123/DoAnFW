@@ -1,14 +1,19 @@
 ﻿
+
 @model SanPham;
 @{
     ViewData["Title"] = "Thông tin sản phẩm";
+    var giamoi = Model.Gia * 1.08;
+    string gia = String.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0,0}", giamoi);
 }
+
 
 
 
 <head>
     <link rel="stylesheet" href="~/css/Product.css" />
 </head>
+
 
 
 <div class="main">
@@ -18,38 +23,46 @@
         </h1>
     </div>
     <hr>
+
     <div class="rowdetail">
-        <div class="img-phone">
-            <img class="img" src="~/image/@Model.IMG">
-            <div class="quantity">
-                <label> Số lượng:</label>
-                <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
-            </div>
-        </div>
-        <div class="price">
-            <div class="cost">
-                <h1 style="color:brown" class="cost-1" id="gia">@Model.Gia</h1>
-                <div class="pg">
-                    <div class="cs">
-                        <a class="cost-2"> 120.000đ</a>
-                    </div>
-                    <div class="giamgia">
-                        <b>Giảm giá 8%</b>
-                    </div>
+
+
+        <form asp-action="AddToCart" asp-controller="Checkout">
+            <div class="img-phone">
+                <img class="img" src="~/image/@Model.IMG">
+                <div class="quantity">
+                    <label> Số lượng:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+                    <input type="hidden" name="MaSP" value="@Model.MaSP">
                 </div>
             </div>
-            <br />
-            <div class="description">
-                <p><b>Mô tả sản phẩm</b></p>
-                <p>
-                    @Model.MoTa
-                </p>
+            <div class="price">
+                <div class="cost">
+                    <h1 style="color:brown" class="cost-1" id="gia">@{string a = String.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:0,0}", Model.Gia);} @a</h1>
+                    <div class="pg">
+                        <div class="cs">
+                            <a class="cost-2">@gia</a>
+                        </div>
+                        <div class="giamgia">
+                            <b>Giảm giá 8%</b>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="description">
+                    <p><b>Mô tả sản phẩm</b></p>
+                    <p>
+                        @Model.MoTa
+                    </p>
+                </div>
+                <div class="button">
+                    <button style="border-radius:30px; background-color:red" type="submit"><a id="buy">Mua ngay</a></button>
+                    <a id="add" asp-controller="Cart" asp-action="Buy" asp-route-MaSP="@Model.MaSP">Thêm vào giỏ hàng</a>
+                </div>
+
+
             </div>
-            <div class="button">
-                <a id="buy" asp-controller="Checkout" asp-action="Index" asp-route-MaSP="@Model.MaSP">Mua ngay</a>
-                <a id="add" asp-controller="Cart" asp-action="Buy" asp-route-MaSP="@Model.MaSP">Thêm vào giỏ hàng</a>
-            </div>
-        </div>
+        </form>
         <div class="table">
             <h4> Chi tiết sản phẩm</h4>
             <table>
@@ -98,7 +111,7 @@
                         Thương hiệu của:
                     </td>
                     <td>
-                        Trung Quốc
+                        @Model.MaNH;
                     </td>
                 </tr>
             </table>
@@ -106,7 +119,10 @@
     </div>
 
 
+
 </div>
+
+
 
 
 

@@ -646,3 +646,6 @@ C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Ra
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\HoaDon\EditHoaDon.cshtml.g.cs
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\TonKho\EditTonKho.cshtml.g.cs
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\TonKho\Index.cshtml.g.cs
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\HoaDon\Invoice.cshtml.g.cs
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\HoaDon\UpdateHoaDon.cshtml.g.cs
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\TonKho\UpdateTonKHo.cshtml.g.cs
