@@ -8,56 +8,58 @@
 @{ int i = 1; }
 <h3> QUẢN LÍ HÓA ĐƠN</h3>
 <div class="table-responsive table-responsive-data2">
-    <table class="table table-data2">
-        <thead>
-            <tr>
-                <th>STT</th>
-                <th>Ngày lập</th>
-                <th>Mã hóa đơn</th>
-                <th>Tên người dùng</th>
-                <th>Tên khách hàng</th>
-                <th>Số điện thoại</th>
-                <th>Tổng giá</th>
-                <th>Trạng thái</th>
-                <th></th>
-            </tr>
-        </thead>
-        @foreach (var item in Model)
-        {
-
-            <tbody>
-                <tr class="tr-shadow">
-                    <td>@i</td>
-                    <td>
-                        @item.GetType().GetProperty("NgayLap").GetValue(item, null)
-                    </td>
-                    <td>
-                        <span class="block-email">@item.GetType().GetProperty("MaHD").GetValue(item, null)</span>
-                    </td>
-                    <td class="desc">@item.GetType().GetProperty("Ten").GetValue(item, null)</td>
-                    <td>@item.GetType().GetProperty("TenKH").GetValue(item, null)</td>
-                    <td>@item.GetType().GetProperty("SDT").GetValue(item, null)</td>
-                    <td>
-                        <span class="status--process">@item.GetType().GetProperty("TongGia").GetValue(item, null)</span>
-                    </td>
-                    <td>@item.GetType().GetProperty("TrangThai").GetValue(item, null)</td>
-                    <td>
-                        <div class="table-data-feature">
-                            <a asp-action="EditHoaDon" asp-route-id="@item.GetType().GetProperty("MaHD").GetValue(item, null)" class="item" data-toggle="tooltip" data-placement="top" title="Edit" id="@item.GetType().GetProperty("MaHD").GetValue(item, null)">
-                                <i class="zmdi zmdi-edit"></i>
-                            </a>
-                        </div>
-                        <div class="table-data-feature">
-                            <a asp-action="PrintHoaDon" asp-route-id="@item.GetType().GetProperty("MaHD").GetValue(item, null)" class="item" data-toggle="tooltip" data-placement="top" title="Print" id="@item.GetType().GetProperty("MaHD").GetValue(item, null)">
-                                <i class="fa fa-print"></i>
-                            </a>
-                        </div>
-                    </td>
+    <form asp-action="Index" asp-controller="HoaDon" method="POST" enctype="multipart/form-data" class="form-horizontal">
+        <table class="table table-data2">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Ngày lập</th>
+                    <th>Mã hóa đơn</th>
+                    <th>Tên người dùng</th>
+                    <th>Tên khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>Tổng giá</th>
+                    <th>Trạng thái</th>
+                    <th></th>
                 </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
 
-            </tbody>
-            i = i + 1;
-        }
-    </table>
+                <tbody>
+                    <tr class="tr-shadow">
+                        <td>@i</td>
+                        <td>
+                            @item.GetType().GetProperty("NgayLap").GetValue(item, null)
+                        </td>
+                        <td>
+                            <span class="block-email">@item.GetType().GetProperty("MaHD").GetValue(item, null)</span>
+                        </td>
+                        <td class="desc">@item.GetType().GetProperty("Ten").GetValue(item, null)</td>
+                        <td>@item.GetType().GetProperty("TenKH").GetValue(item, null)</td>
+                        <td>@item.GetType().GetProperty("SDT").GetValue(item, null)</td>
+                        <td>
+                            <span class="status--process">@item.GetType().GetProperty("TongGia").GetValue(item, null)</span>
+                        </td>
+                        <td>@item.GetType().GetProperty("TrangThai").GetValue(item, null)</td>
+                        <td>
+                            <div class="table-data-feature">
+                                <a asp-action="EditHoaDon" asp-route-id="@item.GetType().GetProperty("MaHD").GetValue(item, null)" class="item" data-toggle="tooltip" data-placement="top" title="Edit" id="@item.GetType().GetProperty("MaHD").GetValue(item, null)">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </a>
+                            </div>
+                            <div class="table-data-feature">
+                                <a asp-action="XemHoaDon" asp-route-id="@item.GetType().GetProperty("MaHD").GetValue(item, null)" class="item" data-toggle="tooltip" data-placement="top" title="Detail" id="@item.GetType().GetProperty("MaHD").GetValue(item, null) name="MaHD">
+                                    <i class="fa fa-caret-right	"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+                i = i + 1;
+            }
+        </table>
+        </form>
 </div>
 

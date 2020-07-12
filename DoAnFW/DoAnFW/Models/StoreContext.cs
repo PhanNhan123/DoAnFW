@@ -564,15 +564,16 @@ namespace DoAnFW.Models
             }
         }
         //CTHD
-        public List<object> GetCTHDs()
+        public List<object> GetCTHDs(int id)
         {
             List<object> list = new List<object>();
 
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from cthd,sanpham where cthd.MaSP= sanpham.MaSP";
+                string str = "select cthd.MaHD, cthd.MaSP,TenSP,Gia,SoLuong from cthd,sanpham,hoadon where cthd.MaSP= sanpham.MaSP and cthd.MaHD=hoadon.MaHD and hoadon.MaHD=@maHD";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("maHD", id);
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -678,7 +679,7 @@ namespace DoAnFW.Models
             }
             return list;
         }
-        public SanPham find(int MaSP)
+        public SanPham find (int MaSP)
         {
 
             SanPham sp = new SanPham();
@@ -1252,6 +1253,27 @@ namespace DoAnFW.Models
             }
 
         }
+        public NguoiDung GetNguoiDungsId(int id)
+        {
 
+            using (MySqlConnection conn = GetConnection())
+            {
+                NguoiDung nl = new NguoiDung();
+                conn.Open();
+                string sql = "select * from nguoidung where Ma= @id limit 1 ";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("id", id);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    nl.Ma = int.Parse(reader["Ma"].ToString());
+                    nl.Ten = reader["Ten"].ToString();
+
+                }
+                return nl;
+            }
+
+        }
     }
 }

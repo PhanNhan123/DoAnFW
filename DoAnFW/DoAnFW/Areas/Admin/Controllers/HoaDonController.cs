@@ -43,10 +43,14 @@ namespace DoAnFW.Areas.Admin.Controllers
             }
             return View();
         }
-        public IActionResult PrintHoaDon(int id)
+        [HttpGet]   
+        public IActionResult XemHoaDon(int id)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
-            return View(context.GetCTHDs());
+            ViewBag.hoadon = context.GetHoaDonById(id);
+            ViewData["TenKH"] = context.GetKhachHangById(ViewBag.hoadon.MaKH).TenKH;
+            ViewData["TenNL"] = context.GetNguoiDungsId(ViewBag.hoadon.MaNL).Ten;
+            return View(context.GetCTHDs(id));
 
         }
         public IActionResult Invoice()

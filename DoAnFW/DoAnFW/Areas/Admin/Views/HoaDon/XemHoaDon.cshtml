@@ -1,0 +1,97 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "XemHoaDon";
+    Layout = "_Layout";
+
+}
+@model List<Object>
+@{ int i = 1; }
+
+<h3>Thông tin hóa đơn</h3>
+<br />
+<form asp-action="XemHoaDon" asp-controller="HoaDon" method="POST" enctype="multipart/form-data" class="form-horizontal">
+
+    <div class="card-body card-block">
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Mã hóa đơn: </label>
+            </div>
+            <div class="col-12 col-md-9">
+                @ViewBag.hoadon.MaHD
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Tên khách hàng:</label>
+            </div>
+            <div class="col-12 col-md-9">
+                @ViewData["TenKH"]
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Tên người lập:</label>
+            </div>
+            <div class="col-12 col-md-9">
+                @ViewData["TenNL"]
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label for="text-input" class=" form-control-label">Ngày lập:</label>
+            </div>
+            <div class="col-12 col-md-9">
+                @ViewBag.hoadon.NgayLap
+            </div>
+        </div>
+
+
+
+        <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tbody>
+                        <tr class="tr-shadow">
+                            <td>@i</td>
+                            <td>
+                                @item.GetType().GetProperty("MaSP").GetValue(item, null)
+                            </td>
+                            <td>
+                                @item.GetType().GetProperty("TenSP").GetValue(item, null)
+                            </td>
+                            <td class="desc">@item.GetType().GetProperty("SoLuong").GetValue(item, null)</td>
+                            <td>@item.GetType().GetProperty("Gia").GetValue(item, null)</td>
+                        </tr>
+
+                    </tbody>
+                    i = i + 1;
+                }
+                <tr>
+                    <td>
+                        <label>Tổng giá</label>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        @ViewBag.hoadon.TongGia
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+        <br />
+</form>
+<button id="printBtn" class="btn btn-info">In hóa đơn</button>
+
