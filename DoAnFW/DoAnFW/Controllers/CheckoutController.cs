@@ -84,6 +84,37 @@ namespace DoAnFW.Controllers
             }
             return -1;
         }
+
+        [Route("/api/checkout")]
+        [HttpPost]
+        public IActionResult InsertHoaDon([FromBody] Checkout checkout)
+        {
+
+            StoreContext storeContext = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
+
+            double tongGia = 0;
+            foreach (CTHD item in checkout.listCTHD)
+            {
+                SanPham sp = storeContext.find(item.MaSP);
+                tongGia += (sp.Gia * item.SoLuong);
+            }
+
+            HoaDon hd = new HoaDon()
+            {
+                MaNL = 1,
+                MaKH = checkout.maKH,
+                NgayLap = DateTime.Now,
+                TongGia = tongGia,
+                TrangThai = "Chưa xác nhận"
+            };
+            long id = storeContext.InsertHoaDon(checkout, hd);
+
+            return Ok(new
+            {
+                status = true,
+                id = 1
+            });
+        }
     }
 }
 

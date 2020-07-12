@@ -367,20 +367,39 @@ namespace DoAnFW.Models
             }
             return list;
         }
-        public int InsertHoaDon(HoaDon hd)
+        public long InsertHoaDon(Checkout data, HoaDon hd)
         {
+
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                var str = "insert into hoadon values(@mahd,@manl,@makh, @ngay,@Tong,@trangthai)";
+                var str = "insert into hoadon(manl, makh, ngaylap, tonggia, trangthai) values(@manl,@makh, @ngay,@Tong,@trangthai)";
+
                 MySqlCommand cmd = new MySqlCommand(str, conn);
-                cmd.Parameters.AddWithValue("mahd", hd.MaHD);
                 cmd.Parameters.AddWithValue("manl", hd.MaNL);
                 cmd.Parameters.AddWithValue("makh", hd.MaKH);
                 cmd.Parameters.AddWithValue("ngay", hd.NgayLap);
                 cmd.Parameters.AddWithValue("Tong", hd.TongGia);
                 cmd.Parameters.AddWithValue("trangthai", hd.TrangThai);
-                return (cmd.ExecuteNonQuery());
+                cmd.ExecuteNonQuery();
+                long hdId = cmd.LastInsertedId;
+
+                foreach (CTHD item in data.listCTHD)
+                {
+                    CTHD ct = new CTHD()
+                    {
+                        MaHD = (int)hdId,
+                        SoLuong = item.SoLuong,
+                        MaSP = item.MaSP,
+                        MaKM = 109001,
+                        HTTT = "ABC"
+                    };
+                    int a = InsertCTHD(ct);
+                    Console.WriteLine(a);
+                }
+
+
+                return hdId;
 
             }
         }
@@ -601,7 +620,7 @@ namespace DoAnFW.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                var str = "insert into cthd(MaSP,MaHD,SoLuong,MaKH,HTTT) values(@masp,@mahd,@soluong, @MaKM,HTTT)";
+                var str = "insert into cthd(MaSP,MaHD,SoLuong,MaKM,HTTT) values(@masp,@mahd,@soluong, @MaKM,HTTT)";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("masp", hd.MaSP);
                 cmd.Parameters.AddWithValue("mahd", hd.MaHD);
@@ -831,6 +850,7 @@ namespace DoAnFW.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
+
                 var str = "insert into khachhang ( TenKH, SĐT, DiaChi) values(@ten,@sdt,@diachi)";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
 
