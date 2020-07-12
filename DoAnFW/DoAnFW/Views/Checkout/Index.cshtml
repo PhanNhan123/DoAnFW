@@ -49,7 +49,7 @@
                                     <div class="col-xs-12"><small>@item.Quantity<span></span></small></div>
                                 </div>
                                 <div class="col-sm-3 col-xs-3 text-right">
-                                    <h6><span>$</span>@item.SanPham.Gia</h6>
+                                    <h6>@item.SanPham.Gia<span>-VND</span></h6>
                                 </div>
                             </div>
                             <div class="form-group"><hr /></div>
@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <strong>Subtotal</strong>
-                                <div class="pull-right"><span>$</span><span>@ViewBag.total</span></div>
+                                <div class="pull-right"><span>@ViewBag.total</span><span>-VND</span></div>
                             </div>
 
                         </div>
@@ -67,7 +67,7 @@
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <strong>Order Total</strong>
-                                <div class="pull-right"><span>$</span><span>@ViewBag.total</span></div>
+                                <div class="pull-right"><span>@ViewBag.total</span><span>-VND</span></div>
                             </div>
                         </div>
                     </div>
