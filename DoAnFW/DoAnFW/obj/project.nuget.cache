@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jo/hC6KCALFrXmWuOo5rckkoaTbQWSASNKgUD+i+lXYBl8yW0Qf9iyPIpMbWXtknTVbNh9mlxR/eZWQ9KlVxjA==",
+  "dgSpecHash": "RauglGnnn67aIu3OWKCQe07cCAPTbmtkYVrnMZxaJeJhP+DbadQm02rRvB9pn/Jgrxa+TYNN2w4DbQhL9V1PPw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dell\\Desktop\\New folder\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj",
   "expectedPackageFiles": [
@@ -25,7 +25,7 @@
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.aspnetcore.session\\2.2.0\\microsoft.aspnetcore.session.2.2.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
-    "C:\\Users\\Dell\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\2.9.4\\microsoft.codeanalysis.analyzers.2.9.4.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.0.0\\microsoft.codeanalysis.analyzers.3.0.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.codeanalysis.common\\3.3.1\\microsoft.codeanalysis.common.3.3.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.codeanalysis.csharp\\3.3.1\\microsoft.codeanalysis.csharp.3.3.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.codeanalysis.csharp.workspaces\\3.3.1\\microsoft.codeanalysis.csharp.workspaces.3.3.1.nupkg.sha512",

@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/run/media/maudp/DATA/data/asp/DoAnFW/DoAnFW/DoAnFW/DoAnFW.csproj": {}
+    "C:\\Users\\Dell\\Desktop\\New folder\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj": {}
   },
   "projects": {
-    "/run/media/maudp/DATA/data/asp/DoAnFW/DoAnFW/DoAnFW/DoAnFW.csproj": {
+    "C:\\Users\\Dell\\Desktop\\New folder\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/run/media/maudp/DATA/data/asp/DoAnFW/DoAnFW/DoAnFW/DoAnFW.csproj",
+        "projectUniqueName": "C:\\Users\\Dell\\Desktop\\New folder\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj",
         "projectName": "DoAnFW",
-        "projectPath": "/run/media/maudp/DATA/data/asp/DoAnFW/DoAnFW/DoAnFW/DoAnFW.csproj",
-        "packagesPath": "/home/maudp/.nuget/packages/",
-        "outputPath": "/run/media/maudp/DATA/data/asp/DoAnFW/DoAnFW/DoAnFW/obj/",
+        "projectPath": "C:\\Users\\Dell\\Desktop\\New folder\\DoAnFW\\DoAnFW\\DoAnFW\\DoAnFW.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dell\\Desktop\\New folder\\DoAnFW\\DoAnFW\\DoAnFW\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/maudp/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,6 +45,12 @@
             "Microsoft.AspNetCore.Session": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.CodeAnalysis.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -93,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.103/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
