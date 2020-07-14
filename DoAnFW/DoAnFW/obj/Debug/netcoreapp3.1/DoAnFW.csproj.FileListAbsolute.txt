@@ -1122,3 +1122,4 @@ C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\bin\Debug\netcoreapp3.1\ru
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\DoAnFW.csproj.CoreCompileInputs.cache
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\DoAnFW.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\DoAnFW.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Dell\Desktop\New folder\DoAnFW\DoAnFW\DoAnFW\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\HoaDon\XemHoaDon.cshtml.g.cs

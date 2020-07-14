@@ -11,12 +11,13 @@ namespace DoAnFW.Models
         private string tenKH;
         private string sDT;
         private string diaChi;
+        public string matKhau { get; set; }
 
         public KhachHang()
         {
 
         }
-        public KhachHang(int ma,string ten, string phone, string diachi)
+        public KhachHang(int ma, string ten, string phone, string diachi)
         {
             maKH = ma;
             tenKH = ten;

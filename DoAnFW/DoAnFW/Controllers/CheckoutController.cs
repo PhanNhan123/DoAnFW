@@ -111,8 +111,7 @@ namespace DoAnFW.Controllers
 
             return Ok(new
             {
-                status = true,
-                id = 1
+                status = true
             });
         }
     }

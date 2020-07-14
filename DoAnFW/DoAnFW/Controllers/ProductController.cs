@@ -50,6 +50,20 @@ namespace DoAnFW.Controllers
                 data = products
             });
         }
+
+        [Route("api/products/sreach")]
+        [HttpGet]
+        public IActionResult Sreach(string key)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
+            List<SanPham> products = context.Search(key);
+
+            return Ok(new
+            {
+                success = true,
+                data = products
+            });
+        }
     }
 }
 

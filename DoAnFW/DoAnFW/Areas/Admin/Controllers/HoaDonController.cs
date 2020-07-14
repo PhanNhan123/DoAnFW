@@ -43,7 +43,7 @@ namespace DoAnFW.Areas.Admin.Controllers
             }
             return View();
         }
-        [HttpGet]   
+        [HttpGet]
         public IActionResult XemHoaDon(int id)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;

@@ -8,14 +8,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 
 namespace DoAnFW.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class SanPhamController : Controller
     {
+        [Obsolete]
         private readonly IHostingEnvironment _hostingEnvironment;
+
+        [Obsolete]
         public SanPhamController(IHostingEnvironment hostingEnvironment)
         {
             _hostingEnvironment = hostingEnvironment;

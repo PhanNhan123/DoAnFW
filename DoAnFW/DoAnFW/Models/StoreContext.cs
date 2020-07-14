@@ -7,6 +7,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.VisualBasic.CompilerServices;
 
+
 namespace DoAnFW.Models
 {
     public class StoreContext
@@ -698,7 +699,7 @@ namespace DoAnFW.Models
             }
             return list;
         }
-        public SanPham find (int MaSP)
+        public SanPham find(int MaSP)
         {
 
             SanPham sp = new SanPham();
@@ -949,6 +950,30 @@ namespace DoAnFW.Models
             return temp;
         }
 
+        public KhachHang LoginMobile(string user, string pass)
+        {
+            KhachHang kh = new KhachHang();
+            MySqlConnection conn = GetConnection();
+            conn.Open();
+            string sql = "select * " +
+                "from khachhang " +
+                "where SĐT='" + user + "' and MatKhau='" + pass + "' " +
+                "limit 1";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+            var result = cmd.ExecuteReader();
+
+            while (result.Read())
+            {
+
+                kh.MaKH = int.Parse(result["MaKH"].ToString());
+                kh.TenKH = result["TenKH"].ToString();
+                kh.SDT = result["SĐT"].ToString();
+                kh.DiaChi = result["DiaChi"].ToString();
+                kh.matKhau = result["MatKhau"].ToString();
+            }
+            return kh;
+        }
 
 
         //public string GetLastID(string tableName, string nameOfColumn)
@@ -1172,6 +1197,41 @@ namespace DoAnFW.Models
             }
             return lt;
         }
+
+        public List<SanPham> Search(string key)
+        {
+            List<SanPham> lt = new List<SanPham>();
+            using (MySqlConnection conn = GetConnection())
+            {
+
+                conn.Open();
+                String sql = "select * from sanpham where upper(TenSP) like '%" + key + "%'";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        SanPham sp = new SanPham();
+                        sp.MaSP = int.Parse(reader["MaSP"].ToString());
+                        sp.TenSP = reader["TenSP"].ToString();
+                        sp.MoTa = reader["MoTa"].ToString();
+                        sp.IMG = reader["IMG"].ToString();
+                        sp.MaNH = reader["MaNH"].ToString();
+                        sp.Gia = double.Parse(reader["Gia"].ToString());
+                        sp.TuongThich = reader["TuongThich"].ToString();
+                        sp.Jack_cam = reader["Jack_cam"].ToString();
+                        sp.KichThuoc = reader["KichThuoc"].ToString();
+                        sp.CongNghe = reader["CongNghe"].ToString();
+                        sp.TrongLuong = reader["TrongLuong"].ToString();
+
+                        lt.Add(sp);
+                    }
+                }
+
+            }
+            return lt;
+        }
+
         public HoaDon GetHoaDonById(int id)
         {
 
