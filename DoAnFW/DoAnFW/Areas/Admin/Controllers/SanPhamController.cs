@@ -53,7 +53,8 @@ namespace DoAnFW.Areas.Admin.Controllers
             uniqueFileName = Guid.NewGuid().ToString() + "_" + IMG.FileName;
             var filePath = Path.Combine(uploadFoder, uniqueFileName);
             IMG.CopyTo(new FileStream(filePath, FileMode.Create));
-            t.IMG = IMG.FileName;
+            t.IMG = uniqueFileName;
+
 
             StoreContext context = HttpContext.RequestServices.GetService(typeof(DoAnFW.Models.StoreContext)) as StoreContext;
             int count = context.InsertSanPham(t);
