@@ -918,9 +918,6 @@ namespace DoAnFW.Models
 
 
 
-
-
-
         //----------------------Admin Area----------------------
 
         //Login
@@ -1257,6 +1254,31 @@ namespace DoAnFW.Models
 
         }
 
+        public List<HoaDon> GetHoaDonByPhone(string phone)
+        {
+            List<HoaDon> lt = new List<HoaDon>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string sql = "select * from hoadon,khachhang where khachhang.MAKH=hoadon.MaKH and SĐT='" + phone + "'";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    HoaDon hd = new HoaDon();
+                    hd.MaHD = int.Parse(reader["MaHD"].ToString());
+                    hd.MaNL = int.Parse(reader["MaNL"].ToString());
+                    hd.MaKH = int.Parse(reader["MaKH"].ToString());
+                    hd.NgayLap = Convert.ToDateTime(reader["NgayLap"].ToString());
+                    hd.TongGia = float.Parse(reader["TongGia"].ToString());
+                    hd.TrangThai = reader["TrangThai"].ToString();
+                    lt.Add(hd);
+                }
+                return lt;
+            }
+
+        }
         public SanPham GetSanPhamById(int id)
         {
 
